@@ -17,8 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerPrincipal implements Initializable {
-
+public class controllerSucursal implements Initializable {
     @FXML
     //Botones de la barra de menú principal
     private FontIcon exit, menu, minimice, regresar;
@@ -33,18 +32,26 @@ public class ControllerPrincipal implements Initializable {
 
     @FXML
     //Botones del menú lateral
-    private JFXButton btnSucursal, btnPaciente,btnOdontologo, btnCita, btnHsitoriaClinica, btnCatalogo, btnRegresar;
+    private JFXButton btnSucursal, btnPaciente, btnOdontologo, btnCita, btnHsitoriaClinica, btnCatalogo, btnRegresar;
+
+    //Elementos propios de la ventana
+    @FXML
+    private FontIcon regresarOpciones;
+    @FXML
+    private AnchorPane paneOpciones, paneRegistroSucursal, paneConsultarSucursal;
+    @FXML
+    private JFXButton btnRegistrarSucursal, btnConsultarSucursal, btnActualizarSucursal, btnEliminarSucursal;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Para cerrar la ventana
-        exit.setOnMouseClicked(event ->{
+        exit.setOnMouseClicked(event -> {
             System.exit(0);
         });
 
         //Para minimazar la ventana
-        minimice.setOnMouseClicked(event ->{
+        minimice.setOnMouseClicked(event -> {
 
             Stage s;
             s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
@@ -54,7 +61,7 @@ public class ControllerPrincipal implements Initializable {
         //Para regrezar al Login Principal
         regresar.setOnMouseClicked(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sample.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/menuPrincipal.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
@@ -72,7 +79,7 @@ public class ControllerPrincipal implements Initializable {
 
         btnRegresar.setOnMouseClicked(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sample.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/menuPrincipal.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
@@ -89,7 +96,7 @@ public class ControllerPrincipal implements Initializable {
 
         btnRegresar.setOnMouseClicked(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sample.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/menuPrincipal.fxml"));
                 Parent root = loader.load();
 
                 Scene scene = new Scene(root);
@@ -119,7 +126,7 @@ public class ControllerPrincipal implements Initializable {
         translateTransition.setByX(-600);
         translateTransition.play();
 
-        menu.setOnMouseClicked(event ->{
+        menu.setOnMouseClicked(event -> {
 
             pane1.setVisible(true);
             menu.setVisible(false);
@@ -134,7 +141,7 @@ public class ControllerPrincipal implements Initializable {
             translateTransition1.play();
         });
 
-        pane1.setOnMouseClicked(event ->{
+        pane1.setOnMouseClicked(event -> {
             FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(0.35), pane1);
             fadeTransition1.setFromValue(1.0);
             fadeTransition1.setToValue(0);
@@ -147,78 +154,33 @@ public class ControllerPrincipal implements Initializable {
             pane1.setVisible(false);
         });
 
+
         //Lógica de la ventana
 
-        btnSucursal.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sucursal.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana de Sucursal");
+        regresarOpciones.setOnMouseClicked(event -> {
+            if (paneConsultarSucursal.isVisible() == true){
+                paneConsultarSucursal.setVisible(false);
             }
+            else if(paneRegistroSucursal.isVisible() == true){
+                paneRegistroSucursal.setVisible(false);
+            }
+            regresarOpciones.setVisible(false);
+            regresar.setVisible(true);
+            paneOpciones.setVisible(true);
         });
 
-        icoSucursal.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sucursal.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana de Sucursal");
-            }
+        btnRegistrarSucursal.setOnMouseClicked(event -> {
+            paneOpciones.setVisible(false);
+            paneRegistroSucursal.setVisible(true);
+            regresar.setVisible(false);
+            regresarOpciones.setVisible(true);
         });
 
-        btnPaciente.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/paciente.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana de Paciente");
-            }
+        btnConsultarSucursal.setOnMouseClicked(event -> {
+            paneOpciones.setVisible(false);
+            paneConsultarSucursal.setVisible(true);
+            regresar.setVisible(false);
+            regresarOpciones.setVisible(true);
         });
-
-        icoPaciente.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/paciente.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana de Paciente");
-            }
-        });
-
-
-
-
     }
 }
