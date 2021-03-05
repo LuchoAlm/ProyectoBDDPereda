@@ -1,12 +1,9 @@
 package sample.controlador;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -14,55 +11,58 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
+import javafx.fxml.Initializable;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class controllerPaciente implements Initializable {
-
-
     @FXML
+    //Botones de la barra de menú principal
     private FontIcon exit, menu, minimice, regresar;
 
     @FXML
-    private FontIcon regresarMenu;
+    //Icono de los botones del menú lateral
+    private FontIcon icoSucursal, icoPaciente, icoOdontologo, icoCita, icoHistoriaClinica, icoCatalogo;
 
     @FXML
-    private AnchorPane pane1, pane2, paneRegistrar, paneOpciones, paneConsultar;
+    //Panel de menú lateral
+    private AnchorPane pane1, pane2;
 
     @FXML
-    private JFXButton btnRegresar;
+    //Botones del menú lateral
+    private JFXButton btnSucursal, btnPaciente, btnOdontologo, btnCita, btnHsitoriaClinica, btnCatalogo, btnRegresar;
 
+    //Elementos propios de la ventana
     @FXML
-    private FontIcon icoPaciente, icoHClinica, icoCita, icoEmpleado, icoInventario, icoFinanzas;
-
+    private FontIcon regresarOpciones;
     @FXML
-    private JFXButton btnPacientes, btnHcli, btnCitas, btnEmpleados, btnInventarios, btnFinanzas;
-
+    private AnchorPane paneOpciones, paneRegistroPaciente, paneConsultarPaciente;
     @FXML
-    private JFXButton btnRegistrarPaciente, btnConsultarPaciente, btnSearchUser;
-
-    @FXML
-    private AnchorPane paneSearchTitle, paneSearchInfo, paneSearchContacTitle, paneSearchContacInfo;
+    private JFXButton btnRegistrarPaciente,btnConsultarPaciente, btnActualizarPaciente, btnEliminarPaciente;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        exit.setOnMouseClicked(event ->{
+
+        //Para cerrar la ventana
+        exit.setOnMouseClicked(event -> {
             System.exit(0);
         });
 
-        minimice.setOnMouseClicked(event ->{
+        //Para minimazar la ventana
+        minimice.setOnMouseClicked(event -> {
 
             Stage s;
             s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
             s.setIconified(true);
         });
 
+        //Para regrezar al Login Principal
         regresar.setOnMouseClicked(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/menuPrincipal.fxml"));
                 Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);
@@ -73,9 +73,47 @@ public class controllerPaciente implements Initializable {
                 s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
                 s.close();
             } catch (IOException e) {
+                System.out.println("Error al cargar de Login");
+            }
+        });
+
+        btnRegresar.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/menuPrincipal.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
                 System.out.println("Error al cargar la ventana");
             }
         });
+
+        btnRegresar.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/menuPrincipal.fxml"));
+                Parent root = loader.load();
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+
+                Stage s;
+                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar de Login");
+            }
+        });
+
+        //Lógica para el desplazamiento de los menús
 
         pane1.setVisible(false);
 
@@ -88,7 +126,7 @@ public class controllerPaciente implements Initializable {
         translateTransition.setByX(-600);
         translateTransition.play();
 
-        menu.setOnMouseClicked(event ->{
+        menu.setOnMouseClicked(event -> {
 
             pane1.setVisible(true);
             menu.setVisible(false);
@@ -103,7 +141,7 @@ public class controllerPaciente implements Initializable {
             translateTransition1.play();
         });
 
-        pane1.setOnMouseClicked(event ->{
+        pane1.setOnMouseClicked(event -> {
             FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(0.35), pane1);
             fadeTransition1.setFromValue(1.0);
             fadeTransition1.setToValue(0);
@@ -116,276 +154,33 @@ public class controllerPaciente implements Initializable {
             pane1.setVisible(false);
         });
 
-        btnRegresar.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/menuPrincipal.fxml"));
-                Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
 
-                Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
-            }
-        });
+        //Lógica de la ventana
 
-        btnPacientes.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/pacientes.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
+        regresarOpciones.setOnMouseClicked(event -> {
+            if (paneConsultarPaciente.isVisible() == true){
+                paneConsultarPaciente.setVisible(false);
             }
-        });
-
-        icoPaciente.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/pacientes.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
+            else if(paneRegistroPaciente.isVisible() == true){
+                paneRegistroPaciente.setVisible(false);
             }
-        });
-
-        btnHcli.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/historiaClinica.fxml"));
-                Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
-            }
-        });
-
-        icoHClinica.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/historiaClinica.fxml"));
-                Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
-            }
-        });
-
-        btnCitas.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/citas.fxml"));
-                Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
-            }
-        });
-
-        icoCita.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/citas.fxml"));
-                Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
-            }
-        });
-
-        btnEmpleados.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/empleados.fxml"));
-                Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
-            }
-        });
-
-        icoEmpleado.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/empleados.fxml"));
-                Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
-            }
-        });
-
-        btnInventarios.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/inventario.fxml"));
-                Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
-            }
-        });
-
-        icoInventario.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/inventario.fxml"));
-                Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
-            }
-        });
-
-        btnFinanzas.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/finanzas.fxml"));
-                Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
-            }
-        });
-
-        icoFinanzas.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/finanzas.fxml"));
-                Parent root = loader.load();
-                //controllerPaciente controller = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
-                s.close();
-            } catch (IOException e) {
-                System.out.println("Error al cargar la ventana");
-            }
+            regresarOpciones.setVisible(false);
+            regresar.setVisible(true);
+            paneOpciones.setVisible(true);
         });
 
         btnRegistrarPaciente.setOnMouseClicked(event -> {
-            paneRegistrar.setVisible(true);
             paneOpciones.setVisible(false);
+            paneRegistroPaciente.setVisible(true);
             regresar.setVisible(false);
-            regresarMenu.setVisible(true);
+            regresarOpciones.setVisible(true);
         });
 
         btnConsultarPaciente.setOnMouseClicked(event -> {
-            paneConsultar.setVisible(true);
             paneOpciones.setVisible(false);
-        });
-
-        regresarMenu.setOnMouseClicked(event -> {
-            paneOpciones.setVisible(true);
-            paneRegistrar.setVisible(false);
-            regresarMenu.setVisible(false);
-            regresar.setVisible(true);
-        });
-
-        btnConsultarPaciente.setOnMouseClicked(event -> {
-            paneConsultar.setVisible(true);
-            paneOpciones.setVisible(false);
+            paneConsultarPaciente.setVisible(true);
             regresar.setVisible(false);
-            regresarMenu.setVisible(true);
-        });
-
-        btnSearchUser.setOnMouseClicked(event -> {
-            paneSearchTitle.setVisible(true);
-            paneSearchInfo.setVisible(true);
-            paneSearchContacTitle.setVisible(true);
-            paneSearchContacInfo.setVisible(true);
+            regresarOpciones.setVisible(true);
         });
     }
 }
-
-
-//La siguiente línea puede funcionar en el caso que queramos indicar que un determinado texto
-//Posee errores
-//txtUserName.setFocusColor(Color.valueOf("#f24949"));
-//Implementar la línea anterior en el caso que el txtField gane el foco
