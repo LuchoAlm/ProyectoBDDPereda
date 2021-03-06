@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #EEEEEE;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.ControllerPrincipal">
+   <children>
+      <AnchorPane prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #002B3C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <FontIcon fx:id="menu" boundsType="VISUAL" iconColor="WHITESMOKE" iconLiteral="fa-align-justify" iconSize="30" layoutX="6.0" layoutY="35.571428298950195" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="12.0" />
+            <FontIcon fx:id="exit" boundsType="VISUAL" iconColor="#f24949" iconLiteral="fa-close" iconSize="20" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="15.0" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="pane1" layoutX="344.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="pane2" prefHeight="438.0" prefWidth="195.0" style="-fx-background-color: #00C5F0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="46.0">
+               <children>
+                  <VBox prefHeight="262.0" prefWidth="195.0" spacing="19.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="82.0">
+                     <children>
+                        <JFXButton fx:id="btnSucursal" alignment="BOTTOM_LEFT" prefHeight="48.0" prefWidth="195.0" ripplerFill="#002b3c" text="Sucursal" textAlignment="CENTER" textFill="WHITESMOKE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnPaciente" alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="195.0" ripplerFill="#002b3c" text="Paciente" textAlignment="CENTER" textFill="WHITESMOKE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnOdontologo" alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="195.0" ripplerFill="#002b3c" text="Odontólogo" textAlignment="CENTER" textFill="WHITESMOKE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnCita" alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="195.0" ripplerFill="#002b3c" text="Cita" textAlignment="CENTER" textFill="WHITESMOKE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnHsitoriaClinica" alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="195.0" ripplerFill="#002b3c" text="Historia Clínica" textAlignment="CENTER" textFill="WHITESMOKE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnCatalogo" alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="195.0" ripplerFill="#002b3c" text="Catálogo" textAlignment="CENTER" textFill="WHITESMOKE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <JFXButton fx:id="btnRegresar" alignment="BOTTOM_LEFT" layoutX="22.0" layoutY="402.0" prefHeight="29.0" prefWidth="148.0" ripplerFill="#002b3c" text="Regresar" textFill="WHITESMOKE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <FontIcon boundsType="VISUAL" fill="#c60000" iconColor="#badafa" iconLiteral="fa-align-justify" iconSize="30" layoutX="6.0" layoutY="35.571428298950195" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="12.0" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <AnchorPane layoutY="46.0" prefHeight="454.0" prefWidth="44.0" style="-fx-background-color: #00C5F0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="46.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="280.0" prefWidth="42.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="74.0">
+               <children>
+                  <FontIcon fx:id="icoSucursal" boundsType="VISUAL" iconColor="WHITESMOKE" iconLiteral="fa-building" iconSize="30" textAlignment="CENTER" wrappingWidth="35.0" />
+                  <FontIcon fx:id="icoPaciente" boundsType="VISUAL" iconColor="WHITESMOKE" iconLiteral="fa-user" iconSize="30" textAlignment="CENTER" wrappingWidth="35.0" />
+                  <FontIcon fx:id="icoOdontologo" boundsType="VISUAL" iconColor="WHITESMOKE" iconLiteral="fa-user-md" iconSize="30" textAlignment="CENTER" wrappingWidth="35.0" />
+                  <FontIcon fx:id="icoCita" boundsType="VISUAL" iconColor="WHITESMOKE" iconLiteral="fa-calendar-plus-o" iconSize="30" textAlignment="CENTER" wrappingWidth="35.0" />
+                  <FontIcon fx:id="icoHistoriaClinica" boundsType="VISUAL" iconColor="WHITESMOKE" iconLiteral="fa-file-text" iconSize="30" textAlignment="CENTER" wrappingWidth="35.0" />
+                  <FontIcon fx:id="icoCatalogo" boundsType="VISUAL" iconColor="WHITESMOKE" iconLiteral="fa-list-alt" iconSize="30" textAlignment="CENTER" wrappingWidth="35.0" />
+               </children>
+            </VBox>
+            <FontIcon fx:id="regresar" boundsType="VISUAL" iconColor="#badafa" iconLiteral="fa-arrow-circle-left" iconSize="20" layoutX="13.0" layoutY="424.0" wrappingWidth="34.28571319580078" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="13.0" />
+         </children>
+      </AnchorPane>
+      <FontIcon fx:id="minimice" boundsType="VISUAL" iconColor="#badafa" iconLiteral="fa-minus" layoutX="646.0" layoutY="29.0" wrappingWidth="16.000000000000114" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="22.0" />
+   </children>
+</AnchorPane>
