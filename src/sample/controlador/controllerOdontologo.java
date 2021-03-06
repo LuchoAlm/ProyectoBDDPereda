@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class controllerSucursal implements Initializable {
+public class controllerOdontologo implements Initializable {
     @FXML
     //Botones de la barra de menú principal
     private FontIcon exit, menu, minimice, regresar;
@@ -31,16 +31,16 @@ public class controllerSucursal implements Initializable {
     private AnchorPane pane1, pane2;
 
     @FXML
-    //Botones del menú lateral21
+    //Botones del menú lateral
     private JFXButton btnSucursal, btnPaciente, btnOdontologo, btnCita, btnHsitoriaClinica, btnCatalogo, btnRegresar;
 
     //Elementos propios de la ventana
     @FXML
     private FontIcon regresarOpciones;
     @FXML
-    private AnchorPane paneOpciones, paneRegistroSucursal, paneConsultarSucursal;
+    private AnchorPane paneOpciones, paneRegistrarOdontologo, paneConsultarOdontologo;
     @FXML
-    private JFXButton btnRegistrarSucursal, btnConsultarSucursal, btnActualizarSucursal, btnEliminarSucursal;
+    private JFXButton btnRegistrarOdontologo,btnConsultarOdontologo, btnActualizarOdontologo, btnEliminarOdontologo;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -158,27 +158,27 @@ public class controllerSucursal implements Initializable {
         //Lógica de la ventana
 
         regresarOpciones.setOnMouseClicked(event -> {
-            if (paneConsultarSucursal.isVisible() == true){
-                paneConsultarSucursal.setVisible(false);
+            if (paneConsultarOdontologo.isVisible() == true){
+                paneConsultarOdontologo.setVisible(false);
             }
-            else if(paneRegistroSucursal.isVisible() == true){
-                paneRegistroSucursal.setVisible(false);
+            else if(paneRegistrarOdontologo.isVisible() == true){
+                paneRegistrarOdontologo.setVisible(false);
             }
             regresarOpciones.setVisible(false);
             regresar.setVisible(true);
             paneOpciones.setVisible(true);
         });
 
-        btnRegistrarSucursal.setOnMouseClicked(event -> {
+        btnRegistrarOdontologo.setOnMouseClicked(event -> {
             paneOpciones.setVisible(false);
-            paneRegistroSucursal.setVisible(true);
+            paneRegistrarOdontologo.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
         });
 
-        btnConsultarSucursal.setOnMouseClicked(event -> {
+        btnConsultarOdontologo.setOnMouseClicked(event -> {
             paneOpciones.setVisible(false);
-            paneConsultarSucursal.setVisible(true);
+            paneConsultarOdontologo.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
         });

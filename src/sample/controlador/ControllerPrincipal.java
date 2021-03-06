@@ -217,6 +217,40 @@ public class ControllerPrincipal implements Initializable {
             }
         });
 
+        btnOdontologo.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/odontologo.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de Odontólogo");
+            }
+        });
+
+        icoOdontologo.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/odontologo.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de Odontólogo");
+            }
+        });
+
 
 
 
