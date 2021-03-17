@@ -1,11 +1,10 @@
 package sample.controlador;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXTextField;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,8 +20,10 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 import javafx.fxml.Initializable;
+import com.jfoenix.controls.JFXButton;
 import sample.modelo.Conexion;
 import sample.modelo.beanSucursal;
+import sample.modelo.beanTratamiento;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,82 +33,78 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class controllerSucursal implements Initializable {
+public class controllerCatalogo implements Initializable {
     double x=0, y=0;
-    private ObservableList<beanSucursal> data = FXCollections.observableArrayList();
-
-    //  BOTONES BARRA SUPERIOR
+    private ObservableList<beanTratamiento> data = FXCollections.observableArrayList();
     @FXML
+    //Botones de la barra de menú principal
     private FontIcon exit, menu, minimice, regresar;
 
-    //  ICONOS MENU LATERAL
     @FXML
+    //Icono de los botones del menú lateral
     private FontIcon icoSucursal, icoPaciente, icoOdontologo, icoCita, icoHistoriaClinica, icoCatalogo;
 
-    //  PANEL BOTONES
     @FXML
+    //Panel de menú lateral
     private AnchorPane pane1, pane2;
 
-    //  BONES PANEL BOTONES
     @FXML
+    //Botones del menú lateral
     private JFXButton btnSucursal, btnPaciente, btnOdontologo, btnCita, btnHsitoriaClinica, btnCatalogo, btnRegresar;
 
-    //  ELEMENTOS DE LA VENTA
+    //Elementos propios de la ventana
     @FXML
     private FontIcon regresarOpciones;
     @FXML
-    private AnchorPane paneOpciones, paneRegistroSucursal, paneConsultarSucursal, paneActualizarSucursal, paneEliminarSucursal;
+    private AnchorPane paneOpciones, paneRegistrarCatalogo, paneConsultarCatalogo, paneActualizarCatalogo, paneEliminarCatalogo;
     @FXML
-    private JFXButton btnRegistrarSucursal, btnActualizarSucursal, btnConsultarSucursal, btnEliminarSucursal;
-
+    private JFXButton btnRegistrarCatalogo,btnConsultarCatalogo, btnActualizarCatalogo, btnEliminarCatologo;
 
     //////////////////////////////////////////////////////////////////////
-    ////        Panel Registro Sucursal                               ////
+    ////        Panel Registro Tratamiento                             ///
     //////////////////////////////////////////////////////////////////////
     @FXML
-    private JFXTextField txtIdSuc, txtNombreSuc, txtDirSuc, txtTlfSuc;
+    private JFXTextField txtIdTratamiento, txtNombreTratamiento, txtDescripcionTratamiento, txtPrecioTratamiento;
     @FXML
-    private JFXButton btnRegistrarSuc, btnCancelarRegistro;
-
+    private JFXButton btnRegistrarTra, btnRegistrarCancelar;
 
     //////////////////////////////////////////////////////////////////////
-    ////        Panel Buscar Sucursal                                 ////
+    ////        Panel Consulta Tratamiento                             ///
     //////////////////////////////////////////////////////////////////////
-    @FXML
-    private TableView<beanSucursal> tablaDatos;
-
-    @FXML
-    private JFXButton btnBuscarConsultar, btnCancelarConsultar;
-
     @FXML
     private JFXTextField txtIdBuscar;
+    @FXML
+    private JFXButton btnBuscarConsultar, btnCancelarConsultar;
+    @FXML
+    private TableView<beanTratamiento> tablaDatos;
 
     //////////////////////////////////////////////////////////////////////
-    ////        Panel Actualizar Sucursal                             ////
+    ////        Panel Actualizar Tratamiento                             ///
     //////////////////////////////////////////////////////////////////////
     @FXML
-    private TableView<beanSucursal> tablaEditar;
+    private JFXTextField txtIdCatalogoActualizar;
     private int index;
+
+    private String id_trat;
+    private String nombre_trat;
+    private String descripcion_trat;
+    private float precio_trat;
     @FXML
-    private JFXButton btnActualizarActualizar;
-
-    private String id_suc, nombre_suc, direccion_suc, tlf_suc;
+    private JFXButton btnBuscarActualizar, btnCancelarActualizar, btnActualizarActualizar;
     @FXML
-    private JFXTextField txtCodigoSucursalBuscar1;
-
-
-
-    @FXML
-    private JFXButton btnBuscarActualizar, btnCancelarActualizar;
+    private TableView<beanTratamiento> tablaEditar;
 
     //////////////////////////////////////////////////////////////////////
-    ////        Panel Eliminar Sucursal                               ////
+    ////        Panel Eliminar Tratamiento                             ///
     //////////////////////////////////////////////////////////////////////
     @FXML
-    private TableView<beanSucursal> tablaEliminar;
-
+    private JFXTextField txtIdTratamientoEliminar;
     @FXML
     private JFXButton btnBuscarEliminar, btnCancelarEliminar, btnEliminarEliminar;
+    @FXML
+    private TableView<beanTratamiento> tablaEliminar;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -125,18 +122,63 @@ public class controllerSucursal implements Initializable {
             s.setIconified(true);
         });
 
-        //Para regresar al Login Principal
-        regresar.setOnMouseClicked(mouseEvent -> {
-           regresarLogin(mouseEvent);
+        //Para regrezar al Login Principal
+        regresar.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/menuPrincipal.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+
+                Stage s;
+                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar de Login");
+            }
         });
 
-        btnRegresar.setOnMouseClicked(mouseEvent -> {
-            regresarLogin(mouseEvent);
+        btnRegresar.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/menuPrincipal.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana");
+            }
         });
 
-        //////////////////////////////////////////////////////////////////////
-        ////        Logica para desplazar menús                           ////
-        //////////////////////////////////////////////////////////////////////
+        btnRegresar.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/menuPrincipal.fxml"));
+                Parent root = loader.load();
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+
+                Stage s;
+                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar de Login");
+            }
+        });
+
+        //Lógica para el desplazamiento de los menús
+
         pane1.setVisible(false);
 
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.35), pane1);
@@ -175,7 +217,6 @@ public class controllerSucursal implements Initializable {
             menu.setVisible(true);
             pane1.setVisible(false);
         });
-
         ////////////////////////////////////////////////////////////////////////
         ////        LOGICA PARA REGRESAR A CUALQUIERA DE LAS VENTANAS       ////
         ////////////////////////////////////////////////////////////////////////
@@ -478,81 +519,76 @@ public class controllerSucursal implements Initializable {
                 System.out.println("Error al cargar la ventana de catalogo");
             }
         });
-
-
+        ////////////////////////////////////////////////////////////////////////
+        ////       FIN LOGICA PARA REGRESAR A CUALQUIERA DE LAS VENTANAS    ////
+        ////////////////////////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////////////////////////
         ////            LOGICA PARA OCULTAR PANELES                         ////
         ////////////////////////////////////////////////////////////////////////
         regresarOpciones.setOnMouseClicked(mouseEvent -> {
-            paneActualizarSucursal.setVisible(false);
-            paneEliminarSucursal.setVisible(false);
-            paneConsultarSucursal.setVisible(false);
-            paneRegistroSucursal.setVisible(false);
+            paneActualizarCatalogo.setVisible(false);
+            paneEliminarCatalogo.setVisible(false);
+            paneConsultarCatalogo.setVisible(false);
+            paneRegistrarCatalogo.setVisible(false);
             paneOpciones.setVisible(true);
             regresarOpciones.setVisible(false);
             regresar.setVisible(true);
         });
 
-        btnRegistrarSucursal.setOnMouseClicked(mouseEvent -> {
+        btnRegistrarCatalogo.setOnMouseClicked(mouseEvent -> {
             paneOpciones.setVisible(false);
-            paneRegistroSucursal.setVisible(true);
+            paneRegistrarCatalogo.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
         });
 
-        btnConsultarSucursal.setOnMouseClicked(mouseEvent -> {
+        btnConsultarCatalogo.setOnMouseClicked(mouseEvent -> {
             paneOpciones.setVisible(false);
-            paneConsultarSucursal.setVisible(true);
+            paneConsultarCatalogo.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
-            //CARGAR LA TABLA DE CONSULTAR SUCURSAL
         });
 
-        btnActualizarSucursal.setOnMouseClicked(mouseEvent -> {
+        btnActualizarCatalogo.setOnMouseClicked(mouseEvent -> {
             paneOpciones.setVisible(false);
-            paneActualizarSucursal.setVisible(true);
+            paneActualizarCatalogo.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
-            //CARGAR LA TABLA DE ACTUALIZAR SUCURSAL
         });
 
-        btnEliminarSucursal.setOnMouseClicked(mouseEvent -> {
+        btnEliminarCatologo.setOnMouseClicked(mouseEvent -> {
             paneOpciones.setVisible(false);
-            paneEliminarSucursal.setVisible(true);
+            paneEliminarCatalogo.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
-            //CARGAR TABLA PARA ELIMINAR SUCURSAL
         });
-
-
 
         ////////////////////////////////////////////////////////////////////////
         ////            LOGICA PANEL REGISTRAR SUCURSAL                     ////
         ////////////////////////////////////////////////////////////////////////
 
-        btnRegistrarSuc.setOnMouseClicked(mouseEvent -> {
-            beanSucursal newSuc = new beanSucursal(
-                    txtIdSuc.getText().toUpperCase(),
-                    txtNombreSuc.getText(),
-                    txtDirSuc.getText(),
-                    txtTlfSuc.getText());
+        btnRegistrarTra.setOnMouseClicked(mouseEvent -> {
+            beanTratamiento newTra = new beanTratamiento(
+                    txtIdTratamiento.getText().toUpperCase(),
+                    txtNombreTratamiento.getText(),
+                    txtDescripcionTratamiento.getText(),
+                    Float.parseFloat(txtPrecioTratamiento.getText()));
 
             try {
                 Connection con = Conexion.getConexion();
-                PreparedStatement ps = con.prepareStatement("INSERT INTO SUCURSAL VALUES (?,?,?,?, NEWID())");
-                ps.setString(1, newSuc.getId_suc());
-                ps.setString(2, newSuc.getNombre_suc());
-                ps.setString(3, newSuc.getDireccion_suc());
-                ps.setString(4, newSuc.getTelefono_suc());
+                PreparedStatement ps = con.prepareStatement("INSERT INTO TRATAMIENTO VALUES (?,?,?,?, NEWID())");
+                ps.setString(1, newTra.getId_trat());
+                ps.setString(2, newTra.getNombre_trat());
+                ps.setString(3, newTra.getDescripcion_trat());
+                ps.setFloat(4, newTra.getPrecio_trat());
                 ps.executeUpdate();
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
                 a.setHeaderText("Los datos se registraron correctamente");
-                a.setContentText("Se agregó la sucursal: " + txtNombreSuc.getText());
+                a.setContentText("Se agregó el tratamiento: " + txtNombreTratamiento.getText());
                 a.showAndWait();
-                //Ocultamos el panel
                 limpiarPaneRegistrar();
-                paneRegistroSucursal.setVisible(false);
+                paneRegistrarCatalogo.setVisible(false);
                 paneOpciones.setVisible(true);
                 regresarOpciones.setVisible(false);
                 regresar.setVisible(true);
@@ -561,11 +597,10 @@ public class controllerSucursal implements Initializable {
             }
         });
 
-         btnCancelarRegistro.setOnMouseClicked(mouseEvent -> {
+        btnRegistrarCancelar.setOnMouseClicked(mouseEvent -> {
             limpiarPaneRegistrar();
-            txtIdSuc.requestFocus();
+            txtIdTratamiento.requestFocus();
         });
-
 
         ////////////////////////////////////////////////////////////////////////
         ////            LOGICA PANEL CONSULTAR SUCURSAL                     ////
@@ -577,72 +612,70 @@ public class controllerSucursal implements Initializable {
                 ResultSet rs;
                 Connection con = Conexion.getConexion();
                 if(txtIdBuscar.getText().trim().isEmpty()){
-                    ps = con.prepareStatement("SELECT * FROM SUCURSAL");
+                    ps = con.prepareStatement("SELECT * FROM TRATAMIENTO");
                     rs = ps.executeQuery();
                     while (rs.next()){
-                        data.add(new beanSucursal (
-                                rs.getString("id_suc"),
-                                rs.getString("nombre_suc"),
-                                rs.getString("direccion_suc"),
-                                rs.getString("telefono_suc")
+                        data.add(new beanTratamiento (
+                                rs.getString("id_trat"),
+                                rs.getString("nombre_trat"),
+                                rs.getString("descripcion_trat"),
+                                rs.getFloat("precio_trat")
                         ));
                         tablaDatos.setItems(data);
                     }
                 }else{
-                    String where = " WHERE id_suc=?";
-                    ps = con.prepareStatement("SELECT * FROM SUCURSAL"+where);
+                    String where = " WHERE id_trat=?";
+                    ps = con.prepareStatement("SELECT * FROM TRATAMIENTO"+where);
                     ps.setString(1, txtIdBuscar.getText());
                     rs = ps.executeQuery();
                     while (rs.next()){
-                        data.add(new beanSucursal (
-                                rs.getString("id_suc"),
-                                rs.getString("nombre_suc"),
-                                rs.getString("direccion_suc"),
-                                rs.getString("telefono_suc")
+                        data.add(new beanTratamiento (
+                                rs.getString("id_trat"),
+                                rs.getString("nombre_trat"),
+                                rs.getString("descripcion_trat"),
+                                rs.getFloat("precio_trat")
                         ));
                         tablaDatos.setItems(data);
                     }
                 }
-
             } catch (SQLException ex) {
                 System.out.println(ex.toString());
             }
         });
 
-
         ////////////////////////////////////////////////////////////////////////
         ////            LOGICA PANEL ACTUALIZAR SUCURSAL                    ////
         ////////////////////////////////////////////////////////////////////////
         btnBuscarActualizar.setOnMouseClicked(mouseEvent -> {
-           llenarColumnasEditar();
-           tablaEditar.setEditable(true);
+            llenarColumnasEditar();
+            tablaEditar.setEditable(true);
             try{
                 PreparedStatement ps;
                 ResultSet rs;
                 Connection con = Conexion.getConexion();
-                if(txtCodigoSucursalBuscar1.getText().trim().isEmpty()){
-                    ps = con.prepareStatement("SELECT * FROM SUCURSAL");
+                if(txtIdCatalogoActualizar.getText().trim().isEmpty()){
+                    ps = con.prepareStatement("SELECT * FROM TRATAMIENTO");
                     rs = ps.executeQuery();
                     while (rs.next()){
-                        data.add(new beanSucursal (
-                                rs.getString("id_suc"),
-                                rs.getString("nombre_suc"),
-                                rs.getString("direccion_suc"),
-                                rs.getString("telefono_suc")
+                        data.add(new beanTratamiento (
+                                rs.getString("id_trat"),
+                                rs.getString("nombre_trat"),
+                                rs.getString("descripcion_trat"),
+                                rs.getFloat("precio_trat")
                         ));
                         tablaEditar.setItems(data);
                     }
                 }else{
-                    String where = " WHERE id_suc=?";
-                    ps = con.prepareStatement("SELECT * FROM SUCURSAL"+where);
-                    ps.setString(1, txtCodigoSucursalBuscar1.getText());
+                    String where = " WHERE id_trat=?";
+                    ps = con.prepareStatement("SELECT * FROM TRATAMIENTO"+where);
+                    ps.setString(1, txtIdCatalogoActualizar.getText());
                     rs = ps.executeQuery();
                     while (rs.next()){
-                        data.add(new beanSucursal (
-                                rs.getString("id_suc"),
-                                rs.getString("nombre_suc"),
-                                rs.getString("direccion_suc"),
-                                rs.getString("telefono_suc")
+                        data.add(new beanTratamiento (
+                                rs.getString("id_trat"),
+                                rs.getString("nombre_trat"),
+                                rs.getString("descripcion_trat"),
+                                rs.getFloat("precio_trat")
                         ));
                         tablaEditar.setItems(data);
                     }
@@ -657,31 +690,30 @@ public class controllerSucursal implements Initializable {
             //OBTENGO LA EL INDICE DE LA TABLA
             index = tablaEditar.getSelectionModel().getFocusedIndex();
             //OBTENGO EL CAMPO DEL INDICE ESPECIFICO
-            id_suc = tablaEditar.getItems().get(index).getId_suc();
-            nombre_suc =tablaEditar.getItems().get(index).getNombre_suc();
-            direccion_suc= tablaEditar.getItems().get(index).getDireccion_suc();
-            tlf_suc = tablaEditar.getItems().get(index).getTelefono_suc();
+            id_trat = tablaEditar.getItems().get(index).getId_trat();
+            nombre_trat =tablaEditar.getItems().get(index).getNombre_trat();
+            descripcion_trat= tablaEditar.getItems().get(index).getDescripcion_trat();
+            precio_trat = tablaEditar.getItems().get(index).getPrecio_trat();
         });
 
         btnActualizarActualizar.setOnMouseClicked(mouseEvent -> {
             try {
                 Connection con = Conexion.getConexion();
-                PreparedStatement ps = con.prepareStatement("UPDATE SUCURSAL SET id_suc=?, nombre_suc=?, " +
-                        "direccion_suc=?, telefono_suc=? WHERE id_suc =?");
-                ps.setString(1, id_suc);
-                ps.setString(2, nombre_suc);
-                ps.setString(3, direccion_suc);
-                ps.setString(4, tlf_suc);
-                ps.setString(5, id_suc);
+                PreparedStatement ps = con.prepareStatement("UPDATE TRATAMIENTO SET id_trat=?, nombre_trat=?, " +
+                        "descripcion_trat=?, precio_trat=? WHERE id_trat =?");
+                ps.setString(1, id_trat);
+                ps.setString(2, nombre_trat);
+                ps.setString(3, descripcion_trat);
+                ps.setFloat(4, precio_trat);
+                ps.setString(5, id_trat);
                 ps.executeUpdate();
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
                 a.setHeaderText("Los datos se actualizaron correctamente");
-                data.get(index).setId_suc(id_suc);
-                data.get(index).setNombre_suc(nombre_suc);
-                data.get(index).setDireccion_suc(direccion_suc);
-                data.get(index).setTelefono_suc(tlf_suc);
+                data.get(index).setId_trat(id_trat);
+                data.get(index).setNombre_trat(nombre_trat);
+                data.get(index).setDescripcion_trat(descripcion_trat);
+                data.get(index).setPrecio_trat(precio_trat);
                 tablaEditar.refresh();
-
                 a.showAndWait();
                 //Ocultamos el panel
                 //paneRegistroSucursal.setVisible(false);
@@ -693,6 +725,7 @@ public class controllerSucursal implements Initializable {
             }
 
         });
+
         ////////////////////////////////////////////////////////////////////////
         ////            LOGICA PANEL ELIMINAR SUCURSAL                      ////
         ////////////////////////////////////////////////////////////////////////
@@ -703,14 +736,14 @@ public class controllerSucursal implements Initializable {
                 ResultSet rs;
 
                 Connection con = Conexion.getConexion();
-                ps = con.prepareStatement("SELECT * FROM SUCURSAL");
+                ps = con.prepareStatement("SELECT * FROM TRATAMIENTO");
                 rs = ps.executeQuery();
                 while (rs.next()){
-                    data.add(new beanSucursal (
-                            rs.getString("id_suc"),
-                            rs.getString("nombre_suc"),
-                            rs.getString("direccion_suc"),
-                            rs.getString("telefono_suc")
+                    data.add(new beanTratamiento (
+                            rs.getString("id_trat"),
+                            rs.getString("nombre_trat"),
+                            rs.getString("descripcion_trat"),
+                            rs.getFloat("precio_trat")
                     ));
                     tablaEliminar.setItems(data);
                 }
@@ -723,14 +756,14 @@ public class controllerSucursal implements Initializable {
             //OBTENGO LA EL INDICE DE LA TABLA
             index = tablaEliminar.getSelectionModel().getFocusedIndex();
             //OBTENGO EL CAMPO DEL INDICE ESPECIFICO
-            id_suc = tablaEliminar.getItems().get(index).getId_suc();
+            id_trat = tablaEliminar.getItems().get(index).getId_trat();
         });
 
         btnEliminarEliminar.setOnMouseClicked(mouseEvent -> {
             try {
                 Connection con = Conexion.getConexion();
-                PreparedStatement ps = con.prepareStatement("DELETE FROM SUCURSAL WHERE id_suc =?");
-                ps.setString(1, id_suc);
+                PreparedStatement ps = con.prepareStatement("DELETE FROM TRATAMIENTO WHERE id_trat =?");
+                ps.setString(1, id_trat);
                 ps.executeUpdate();
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
                 a.setHeaderText("Los datos se borraron correctamente");
@@ -750,138 +783,99 @@ public class controllerSucursal implements Initializable {
 
         });
 
-
     }
-
-
-
-    private void regresarLogin(Event mouseEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/menuPrincipal.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setScene(scene);
-            stage.show();
-            root.setOnMousePressed(event ->{
-                x=event.getSceneX();
-                y= event.getSceneY();
-            });
-            root.setOnMouseDragged(event ->{
-                stage.setX(event.getScreenX() - x);
-                stage.setY(event.getScreenY() - y);
-            });
-            Stage s;
-            s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
-            s.close();
-        } catch (IOException e) {
-            System.out.println("Error al cargar de Login");
-        }
-    }
-
-    //Metodo para limpiar la interfaz de registro
     private void limpiarPaneRegistrar(){
-        txtIdSuc.setText("");
-        txtNombreSuc.setText("");
-        txtDirSuc.setText("");
-        txtTlfSuc.setText("");
+        txtIdTratamiento.setText("");
+        txtNombreTratamiento.setText("");
+        txtDescripcionTratamiento.setText("");
+        txtPrecioTratamiento.setText("");
     }
-
 
     public void llenarColumnas(){
         //AÑADIMOS LA INFORMACION A LAS COLUMNAS
-        TableColumn<beanSucursal, String> colIdSuc = new TableColumn<>("ID Suc");
-        colIdSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("id_suc"));
+        TableColumn<beanTratamiento, String> colIdSuc = new TableColumn<>("ID TRAT");
+        colIdSuc.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("id_trat"));
         colIdSuc.setCellFactory(TextFieldTableCell.forTableColumn());
         colIdSuc.setOnEditCommit(data ->{
-            data.getRowValue().setId_suc(data.getNewValue());
+            data.getRowValue().setId_trat(data.getNewValue());
         });
 
-        TableColumn<beanSucursal, String> colNombre = new TableColumn<>("Nombre Sucursal");
-        colNombre.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("nombre_suc"));
+        TableColumn<beanTratamiento, String> colNombre = new TableColumn<>("Nombre Trat");
+        colNombre.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("nombre_trat"));
         colNombre.setCellFactory(TextFieldTableCell.forTableColumn());
         colNombre.setOnEditCommit(data ->{
-            data.getRowValue().setNombre_suc(data.getNewValue());
+            data.getRowValue().setNombre_trat(data.getNewValue());
         });
 
-        TableColumn<beanSucursal, String> colDirSuc = new TableColumn<>("ID Suc");
-        colDirSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("direccion_suc"));
+        TableColumn<beanTratamiento, String> colDirSuc = new TableColumn<>("Descripción");
+        colDirSuc.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("descripcion_trat"));
         colDirSuc.setCellFactory(TextFieldTableCell.forTableColumn());
         colDirSuc.setOnEditCommit(data ->{
-            data.getRowValue().setId_suc(data.getNewValue());
+            data.getRowValue().setDescripcion_trat(data.getNewValue());
         });
 
-        TableColumn<beanSucursal, String> colTlfSuc = new TableColumn<>("Tlf Suc");
-        colTlfSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("telefono_suc"));
-        colTlfSuc.setCellFactory(TextFieldTableCell.forTableColumn());
-        colTlfSuc.setOnEditCommit(data ->{
-            data.getRowValue().setId_suc(data.getNewValue());
+        TableColumn<beanTratamiento, Float> colPrecio = new TableColumn<>("$ Precio");
+        colPrecio.setCellValueFactory(new PropertyValueFactory<beanTratamiento, Float>("precio_trat"));
+        colPrecio.setOnEditCommit(data ->{
+            data.getRowValue().setPrecio_trat(Float.parseFloat(String.valueOf(data.getNewValue())));
         });
 
-        tablaDatos.getColumns().addAll(colIdSuc, colNombre, colDirSuc, colTlfSuc);
+        tablaDatos.getColumns().addAll(colIdSuc, colNombre, colDirSuc, colPrecio);
     }
 
     public void llenarColumnasEditar(){
         //AÑADIMOS LA INFORMACION A LAS COLUMNAS
-        TableColumn<beanSucursal, String> colIdSuc = new TableColumn<>("ID Suc");
-        colIdSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("id_suc"));
+        TableColumn<beanTratamiento, String> colIdSuc = new TableColumn<>("ID TRAT");
+        colIdSuc.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("id_trat"));
         colIdSuc.setCellFactory(TextFieldTableCell.forTableColumn());
         colIdSuc.setOnEditCommit(data -> {
             btnActualizarActualizar.setVisible(true);
-            id_suc=data.getNewValue();
+            id_trat=data.getNewValue();
         });
 
-        TableColumn<beanSucursal, String> colNombre = new TableColumn<>("Nombre Sucursal");
-        colNombre.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("nombre_suc"));
+        TableColumn<beanTratamiento, String> colNombre = new TableColumn<>("Nombre Trat");
+        colNombre.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("nombre_trat"));
         colNombre.setCellFactory(TextFieldTableCell.forTableColumn());
         colNombre.setOnEditCommit(data -> {
             btnActualizarActualizar.setVisible(true);
-            nombre_suc=data.getNewValue();
+            nombre_trat=data.getNewValue();
         });
 
-        TableColumn<beanSucursal, String> colDirSuc = new TableColumn<>("ID Suc");
-        colDirSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("direccion_suc"));
+        TableColumn<beanTratamiento, String> colDirSuc = new TableColumn<>("Descripción");
+        colDirSuc.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("descripcion_trat"));
         colDirSuc.setCellFactory(TextFieldTableCell.forTableColumn());
         colDirSuc.setOnEditCommit(data -> {
             btnActualizarActualizar.setVisible(true);
-            direccion_suc=data.getNewValue();
+            descripcion_trat=data.getNewValue();
         });
 
-        TableColumn<beanSucursal, String> colTlfSuc = new TableColumn<>("Tlf Suc");
-        colTlfSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("telefono_suc"));
-        colTlfSuc.setCellFactory(TextFieldTableCell.forTableColumn());
-        colTlfSuc.setOnEditCommit(data -> {
+        TableColumn<beanTratamiento, Float> colPrecio = new TableColumn<>("$ Precio");
+        colPrecio.setCellValueFactory(new PropertyValueFactory<beanTratamiento, Float>("precio_trat"));
+        colPrecio.setOnEditCommit(data -> {
             btnActualizarActualizar.setVisible(true);
-            tlf_suc=data.getNewValue();
+            precio_trat=data.getNewValue();
         });
 
-        tablaEditar.getColumns().addAll(colIdSuc, colNombre, colDirSuc, colTlfSuc);
+        tablaEditar.getColumns().addAll(colIdSuc, colNombre, colDirSuc, colPrecio);
     }
 
     public void llenarColumnasBorrar(){
         //AÑADIMOS LA INFORMACION A LAS COLUMNAS
-        TableColumn<beanSucursal, String> colIdSuc = new TableColumn<>("ID Suc");
-        colIdSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("id_suc"));
+        TableColumn<beanTratamiento, String> colIdSuc = new TableColumn<>("ID TRAT");
+        colIdSuc.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("id_trat"));
         colIdSuc.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        TableColumn<beanSucursal, String> colNombre = new TableColumn<>("Nombre Sucursal");
-        colNombre.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("nombre_suc"));
+        TableColumn<beanTratamiento, String> colNombre = new TableColumn<>("Nombre Trat");
+        colNombre.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("nombre_trat"));
         colNombre.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        TableColumn<beanSucursal, String> colDirSuc = new TableColumn<>("ID Suc");
-        colDirSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("direccion_suc"));
+        TableColumn<beanTratamiento, String> colDirSuc = new TableColumn<>("Descripción");
+        colDirSuc.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("descripcion_trat"));
         colDirSuc.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        TableColumn<beanSucursal, String> colTlfSuc = new TableColumn<>("Tlf Suc");
-        colTlfSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("telefono_suc"));
-        colTlfSuc.setCellFactory(TextFieldTableCell.forTableColumn());
+        TableColumn<beanTratamiento, Float> colPrecio = new TableColumn<>("$ Precio");
+        colPrecio.setCellValueFactory(new PropertyValueFactory<beanTratamiento, Float>("precio_trat"));
 
-        tablaEliminar.getColumns().addAll(colIdSuc, colNombre, colDirSuc, colTlfSuc);
+        tablaEliminar.getColumns().addAll(colIdSuc, colNombre, colDirSuc, colPrecio);
     }
-
-
-
-
-
 }

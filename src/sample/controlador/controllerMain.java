@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 
 
 public class controllerMain implements Initializable {
+    double x=0, y=0;
 
     @FXML
     private AnchorPane anchorPane;
@@ -84,14 +85,21 @@ public class controllerMain implements Initializable {
 
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
+
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y= event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
                 System.out.println("Error al cargar la vista");
             }
-
-
         });
 
 

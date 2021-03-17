@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControllerPrincipal implements Initializable {
+    double x,y = 0;
 
     @FXML
     //Botones de la barra de menú principal
@@ -52,7 +53,7 @@ public class ControllerPrincipal implements Initializable {
         });
 
         //Para regrezar al Login Principal
-        regresar.setOnMouseClicked(event -> {
+        regresar.setOnMouseClicked(mouseEvent -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sample.fxml"));
                 Parent root = loader.load();
@@ -61,16 +62,23 @@ public class ControllerPrincipal implements Initializable {
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(scene);
                 stage.show();
-
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
                 Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
                 s.close();
             } catch (IOException e) {
                 System.out.println("Error al cargar de Login");
             }
         });
 
-        btnRegresar.setOnMouseClicked(event -> {
+        btnRegresar.setOnMouseClicked(mouseEvent -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sample.fxml"));
                 Parent root = loader.load();
@@ -80,14 +88,22 @@ public class ControllerPrincipal implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
                 s.close();
             } catch (IOException e) {
                 System.out.println("Error al cargar la ventana");
             }
         });
 
-        btnRegresar.setOnMouseClicked(event -> {
+        btnRegresar.setOnMouseClicked(mouseEvent -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sample.fxml"));
                 Parent root = loader.load();
@@ -97,9 +113,16 @@ public class ControllerPrincipal implements Initializable {
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(scene);
                 stage.show();
-
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
                 Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
                 s.close();
             } catch (IOException e) {
                 System.out.println("Error al cargar de Login");
@@ -149,7 +172,7 @@ public class ControllerPrincipal implements Initializable {
 
         //Lógica de la ventana
 
-        btnSucursal.setOnMouseClicked(event -> {
+        btnSucursal.setOnMouseClicked(mouseEvent -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sucursal.fxml"));
                 Parent root = loader.load();
@@ -159,14 +182,22 @@ public class ControllerPrincipal implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
                 s.close();
             } catch (IOException e) {
                 System.out.println("Error al cargar la ventana de Sucursal");
             }
         });
 
-        icoSucursal.setOnMouseClicked(event -> {
+        icoSucursal.setOnMouseClicked(mouseEvent -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sucursal.fxml"));
                 Parent root = loader.load();
@@ -176,14 +207,22 @@ public class ControllerPrincipal implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
                 s.close();
             } catch (IOException e) {
                 System.out.println("Error al cargar la ventana de Sucursal");
             }
         });
 
-        btnPaciente.setOnMouseClicked(event -> {
+        btnPaciente.setOnMouseClicked(mouseEvent -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/paciente.fxml"));
                 Parent root = loader.load();
@@ -193,14 +232,22 @@ public class ControllerPrincipal implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
                 s.close();
             } catch (IOException e) {
                 System.out.println("Error al cargar la ventana de Paciente");
             }
         });
 
-        icoPaciente.setOnMouseClicked(event -> {
+        icoPaciente.setOnMouseClicked(mouseEvent -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/paciente.fxml"));
                 Parent root = loader.load();
@@ -210,14 +257,22 @@ public class ControllerPrincipal implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
                 s.close();
             } catch (IOException e) {
                 System.out.println("Error al cargar la ventana de Paciente");
             }
         });
 
-        btnOdontologo.setOnMouseClicked(event -> {
+        btnOdontologo.setOnMouseClicked(mouseEvent -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/odontologo.fxml"));
                 Parent root = loader.load();
@@ -227,14 +282,22 @@ public class ControllerPrincipal implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 Stage s;
-                s = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
                 s.close();
             } catch (IOException e) {
                 System.out.println("Error al cargar la ventana de Odontólogo");
             }
         });
 
-        icoOdontologo.setOnMouseClicked(event -> {
+        icoOdontologo.setOnMouseClicked(mouseEvent -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/odontologo.fxml"));
                 Parent root = loader.load();
@@ -244,15 +307,170 @@ public class ControllerPrincipal implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 Stage s;
-                s = (Stage) ((FontIcon) event.getSource()).getScene().getWindow();
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
                 s.close();
             } catch (IOException e) {
                 System.out.println("Error al cargar la ventana de Odontólogo");
             }
         });
 
+        btnCita.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/cita.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de cita");
+            }
+        });
 
+        icoCita.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/cita.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de cita");
+            }
+        });
 
+        btnHsitoriaClinica.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/hcl.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de Historia Clínica");
+            }
+        });
+
+        icoHistoriaClinica.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/hcl.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de historia Clínica");
+            }
+        });
+
+        btnCatalogo.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/catalogo.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de catalogo");
+            }
+        });
+
+        icoCatalogo.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/catalogo.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de catalogo");
+            }
+        });
 
     }
 }

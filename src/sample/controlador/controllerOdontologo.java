@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class controllerOdontologo implements Initializable {
+    double x=0, y=0;
     @FXML
     //Botones de la barra de menú principal
     private FontIcon exit, menu, minimice, regresar;
@@ -38,7 +39,7 @@ public class controllerOdontologo implements Initializable {
     @FXML
     private FontIcon regresarOpciones;
     @FXML
-    private AnchorPane paneOpciones, paneRegistrarOdontologo, paneConsultarOdontologo;
+    private AnchorPane paneOpciones, paneRegistrarOdontologo, paneConsultarOdontologo, paneActualizarOdontologo, paneEliminarOdontologo;
     @FXML
     private JFXButton btnRegistrarOdontologo,btnConsultarOdontologo, btnActualizarOdontologo, btnEliminarOdontologo;
 
@@ -153,34 +154,356 @@ public class controllerOdontologo implements Initializable {
             menu.setVisible(true);
             pane1.setVisible(false);
         });
-
-
-        //Lógica de la ventana
-
-        regresarOpciones.setOnMouseClicked(event -> {
-            if (paneConsultarOdontologo.isVisible() == true){
-                paneConsultarOdontologo.setVisible(false);
+        ////////////////////////////////////////////////////////////////////////
+        ////        LOGICA PARA REGRESAR A CUALQUIERA DE LAS VENTANAS       ////
+        ////////////////////////////////////////////////////////////////////////
+        btnSucursal.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sucursal.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de Sucursal");
             }
-            else if(paneRegistrarOdontologo.isVisible() == true){
-                paneRegistrarOdontologo.setVisible(false);
-            }
-            regresarOpciones.setVisible(false);
-            regresar.setVisible(true);
-            paneOpciones.setVisible(true);
         });
 
-        btnRegistrarOdontologo.setOnMouseClicked(event -> {
+        icoSucursal.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/sucursal.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de Sucursal");
+            }
+        });
+
+        btnPaciente.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/paciente.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de Paciente");
+            }
+        });
+
+        icoPaciente.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/paciente.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de Paciente");
+            }
+        });
+
+        btnOdontologo.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/odontologo.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de Odontólogo");
+            }
+        });
+
+        icoOdontologo.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/odontologo.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de Odontólogo");
+            }
+        });
+
+        btnCita.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/cita.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de cita");
+            }
+        });
+
+        icoCita.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/cita.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de cita");
+            }
+        });
+
+        btnHsitoriaClinica.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/hcl.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de Historia Clínica");
+            }
+        });
+
+        icoHistoriaClinica.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/hcl.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de historia Clínica");
+            }
+        });
+
+        btnCatalogo.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/catalogo.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((JFXButton) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de catalogo");
+            }
+        });
+
+        icoCatalogo.setOnMouseClicked(mouseEvent -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/catalogo.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+                Stage s;
+                root.setOnMousePressed(event ->{
+                    x=event.getSceneX();
+                    y = event.getSceneY();
+                });
+                root.setOnMouseDragged(event ->{
+                    stage.setX(event.getScreenX() - x);
+                    stage.setY(event.getScreenY() - y);
+                });
+                s = (Stage) ((FontIcon) mouseEvent.getSource()).getScene().getWindow();
+                s.close();
+            } catch (IOException e) {
+                System.out.println("Error al cargar la ventana de catalogo");
+            }
+        });
+        ////////////////////////////////////////////////////////////////////////
+        ////       FIN LOGICA PARA REGRESAR A CUALQUIERA DE LAS VENTANAS    ////
+        ////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////
+        ////            LOGICA PARA OCULTAR PANELES                         ////
+        ////////////////////////////////////////////////////////////////////////
+        regresarOpciones.setOnMouseClicked(mouseEvent -> {
+            paneActualizarOdontologo.setVisible(false);
+
+            paneEliminarOdontologo.setVisible(false);
+            paneConsultarOdontologo.setVisible(false);
+            paneRegistrarOdontologo.setVisible(false);
+            paneOpciones.setVisible(true);
+            regresarOpciones.setVisible(false);
+            regresar.setVisible(true);
+        });
+
+        btnRegistrarOdontologo.setOnMouseClicked(mouseEvent -> {
             paneOpciones.setVisible(false);
             paneRegistrarOdontologo.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
         });
 
-        btnConsultarOdontologo.setOnMouseClicked(event -> {
+        btnConsultarOdontologo.setOnMouseClicked(mouseEvent -> {
             paneOpciones.setVisible(false);
             paneConsultarOdontologo.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
         });
+
+        btnActualizarOdontologo.setOnMouseClicked(mouseEvent -> {
+            paneOpciones.setVisible(false);
+            paneActualizarOdontologo.setVisible(true);
+            regresar.setVisible(false);
+            regresarOpciones.setVisible(true);
+        });
+
+        btnEliminarOdontologo.setOnMouseClicked(mouseEvent -> {
+            paneOpciones.setVisible(false);
+            paneEliminarOdontologo.setVisible(true);
+            regresar.setVisible(false);
+            regresarOpciones.setVisible(true);
+        });
+
+        ////////////////////////////////////////////////////////////////////////
+        ////            LOGICA PARA OCULTAR PANELES                         ////
+        ////////////////////////////////////////////////////////////////////////
     }
 }

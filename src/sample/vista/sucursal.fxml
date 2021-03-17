@@ -5,7 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -17,6 +16,64 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #BADAFA;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.controllerSucursal">
     <children>
+      <AnchorPane fx:id="paneEliminarSucursal" layoutX="163.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
+         <children>
+            <Label text="Eliminar Información de Sucursal" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <FontIcon iconLiteral="fa-building-o" />
+               </graphic>
+            </Label>
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="96.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <content>
+                  <AnchorPane prefHeight="389.0" prefWidth="754.0" style="-fx-background-color: #BADAFA;">
+                     <children>
+                        <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-building" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
+                              <JFXTextField fx:id="txtCodigoSucursalBuscar2" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Código de la Sucursal" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarEliminar" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnCancelarEliminar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnEliminarEliminar" buttonType="RAISED" contentDisplay="CENTER" layoutX="698.0" layoutY="23.0" prefHeight="25.0" prefWidth="42.0" style="-fx-background-color: #F24949;" text=" " textAlignment="CENTER" textFill="WHITESMOKE">
+                                 <graphic>
+                                    <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-times-circle" iconSize="20" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <TableView fx:id="tablaEliminar" layoutX="185.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneActualizarSucursal" layoutX="163.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
+         <children>
+            <Label text="Actualizar Información de Sucursal" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <FontIcon iconLiteral="fa-building-o" />
+               </graphic>
+            </Label>
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="96.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <content>
+                  <AnchorPane prefHeight="389.0" prefWidth="754.0" style="-fx-background-color: #BADAFA;">
+                     <children>
+                        <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-building" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
+                              <JFXTextField fx:id="txtCodigoSucursalBuscar1" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Código de la Sucursal" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarActualizar" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnCancelarActualizar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnActualizarActualizar" buttonType="RAISED" layoutX="604.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #BADAFA;" text="Actualizar" textFill="#393746" visible="false" />
+                           </children>
+                        </AnchorPane>
+                        <TableView fx:id="tablaEditar" layoutX="185.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="paneConsultarSucursal" layoutX="153.0" layoutY="124.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
          <children>
             <Label text="Consultar Información de Sucursal" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
@@ -31,17 +88,12 @@
                         <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-building" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
-                              <JFXTextField fx:id="txtCodigoSucursalBuscar" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Código de la Sucursal" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarSucursal" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarCancelar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                              <JFXTextField fx:id="txtIdBuscar" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Código de la Sucursal" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarConsultar" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnCancelarConsultar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="tblInfoPaciente" layoutX="159.0" layoutY="115.0" prefHeight="200.0" prefWidth="424.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
-                        </TableView>
+                        <TableView fx:id="tablaDatos" layoutX="185.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -50,7 +102,7 @@
       </AnchorPane>
       <AnchorPane fx:id="paneRegistroSucursal" focusTraversable="true" layoutX="313.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" scaleShape="false" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
          <children>
-            <Label layoutX="44.0" layoutY="26.0" text="Registro de Sucursal" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+            <Label layoutX="44.0" layoutY="26.0" text="Registrar Sucursal" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <FontIcon iconLiteral="fa-building" />
                </graphic>
@@ -68,12 +120,12 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <JFXTextField fx:id="txtCodigoSucursal" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="70.0" prefHeight="25.0" prefWidth="148.0" promptText="Código de Sucursal" unFocusColor="#393e46" />
-                        <JFXTextField fx:id="txtNombreSucursal" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="120.0" prefHeight="25.0" prefWidth="642.0" promptText="Nombre de Sucursal" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="120.0" />
-                        <JFXTextField fx:id="txtDireccionSucursal" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="170.0" prefHeight="25.0" prefWidth="404.0" promptText="Dirección de Sucursal" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="170.0" />
-                        <JFXTextField fx:id="txtTelefonoSucursal" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="484.0" layoutY="170.0" prefHeight="25.0" prefWidth="228.0" promptText="Teléfono de Sucursal" unFocusColor="#393e46" AnchorPane.leftAnchor="484.0" AnchorPane.topAnchor="170.0" />
-                        <JFXButton fx:id="btnRegistrar" buttonType="RAISED" layoutX="212.0" layoutY="229.0" prefHeight="25.0" prefWidth="150.0" ripplerFill="WHITESMOKE" style="-fx-background-color: #63d356;" text="Registrar" textFill="WHITE" AnchorPane.leftAnchor="212.0" AnchorPane.topAnchor="229.0" />
-                        <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutX="399.0" layoutY="229.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITE" AnchorPane.leftAnchor="399.0" AnchorPane.topAnchor="229.0" />
+                        <JFXTextField fx:id="txtIdSuc" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="70.0" prefHeight="25.0" prefWidth="148.0" promptText="Código de Sucursal" unFocusColor="#393e46" />
+                        <JFXTextField fx:id="txtNombreSuc" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="120.0" prefHeight="25.0" prefWidth="642.0" promptText="Nombre de Sucursal" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="120.0" />
+                        <JFXTextField fx:id="txtDirSuc" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="170.0" prefHeight="25.0" prefWidth="404.0" promptText="Dirección de Sucursal" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="170.0" />
+                        <JFXTextField fx:id="txtTlfSuc" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="484.0" layoutY="170.0" prefHeight="25.0" prefWidth="228.0" promptText="Teléfono de Sucursal" unFocusColor="#393e46" AnchorPane.leftAnchor="484.0" AnchorPane.topAnchor="170.0" />
+                        <JFXButton fx:id="btnRegistrarSuc" buttonType="RAISED" layoutX="212.0" layoutY="229.0" prefHeight="25.0" prefWidth="150.0" ripplerFill="WHITESMOKE" style="-fx-background-color: #63d356;" text="Registrar" textFill="WHITE" AnchorPane.leftAnchor="212.0" AnchorPane.topAnchor="229.0" />
+                        <JFXButton fx:id="btnCancelarRegistro" buttonType="RAISED" layoutX="399.0" layoutY="229.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITE" AnchorPane.leftAnchor="399.0" AnchorPane.topAnchor="229.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -109,12 +161,12 @@
                      </graphic>
                   </JFXButton>
                   <JFXButton fx:id="btnActualizarSucursal" accessibleHelp="Aquí podrá registrar un paciente" accessibleText="Aquí podrá registrar un paciente" alignment="CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="235.0" ripplerFill="#00c5f0" style="-fx-background-color: #002b3c;" text="Actualizar Sucursal" textFill="WHITESMOKE" wrapText="true" GridPane.rowIndex="1">
+                     <graphic>
+                        <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-building-o" iconSize="40" />
+                     </graphic>
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
-                     <graphic>
-                        <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-refresh" iconSize="40" />
-                     </graphic>
                   </JFXButton>
                   <JFXButton fx:id="btnEliminarSucursal" accessibleHelp="Aquí podrá registrar un paciente" accessibleText="Aquí podrá registrar un paciente" alignment="CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="235.0" ripplerFill="#00c5f0" style="-fx-background-color: #002b3c;" text="Eliminar Sucursal" textFill="WHITESMOKE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>

@@ -3,11 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -18,11 +18,11 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #BADAFA;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controlador.controllerPaciente">
     <children>
-      <AnchorPane fx:id="paneConsultarPaciente" layoutX="153.0" layoutY="124.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
+      <AnchorPane fx:id="paneEliminarPaciente" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
          <children>
-            <Label text="Consultar Información de Paciente" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+            <Label text="Eliminar Información de Paciente" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
                <graphic>
-                  <FontIcon iconLiteral="fa-user-plus" />
+                  <FontIcon iconLiteral="fa-user" />
                </graphic>
             </Label>
             <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="96.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
@@ -32,17 +32,64 @@
                         <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-user" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
-                              <JFXTextField fx:id="txtCedulaBuscarPaciente" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Cédula del Paciente" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
-                              <JFXButton buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
-                              <JFXButton buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                              <JFXTextField fx:id="txtCodigoSucursalBuscar11" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Cédula de Paciente" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarSucursal11" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarCancelar11" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="tblInfoPaciente" layoutX="159.0" layoutY="115.0" prefHeight="200.0" prefWidth="424.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
-                        </TableView>
+                        <JFXTreeTableView fx:id="tablaDatos11" layoutX="137.0" layoutY="84.0" prefHeight="296.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneActualizarPaciente" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
+         <children>
+            <Label text="Actualizar Información de Paciente" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <FontIcon iconLiteral="fa-user" />
+               </graphic>
+            </Label>
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="96.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <content>
+                  <AnchorPane prefHeight="389.0" prefWidth="754.0" style="-fx-background-color: #BADAFA;">
+                     <children>
+                        <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-user" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
+                              <JFXTextField fx:id="txtCodigoSucursalBuscar1" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Cédula de Paciente" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarSucursal1" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarCancelar1" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                           </children>
+                        </AnchorPane>
+                        <JFXTreeTableView fx:id="tablaDatos1" layoutX="137.0" layoutY="84.0" prefHeight="296.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneConsultarPaciente" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
+         <children>
+            <Label text="Consultar Información de Paciente" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+               <graphic>
+                  <FontIcon iconLiteral="fa-user" />
+               </graphic>
+            </Label>
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="96.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <content>
+                  <AnchorPane prefHeight="389.0" prefWidth="754.0" style="-fx-background-color: #BADAFA;">
+                     <children>
+                        <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-user" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
+                              <JFXTextField fx:id="txtCodigoSucursalBuscar" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Cédula de Paciente" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarSucursal" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarCancelar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                           </children>
+                        </AnchorPane>
+                        <JFXTreeTableView fx:id="tablaDatos" layoutX="137.0" layoutY="84.0" prefHeight="296.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -73,10 +120,9 @@
                         <JFXTextField fx:id="txtCedula" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="102.0" promptText="Cédula del Paciente" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="102.0" />
                         <JFXTextField fx:id="txtNombresPaciente" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="215.0" layoutY="102.0" promptText="Nombres del Paciente" unFocusColor="#393e46" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="102.0" />
                         <JFXTextField fx:id="txtApellidosPaciente" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="360.0" layoutY="102.0" promptText="Apellidos del Paciente" unFocusColor="#393e46" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="102.0" />
-                        <JFXTextField fx:id="txtFechaPaciente" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="505.0" layoutY="102.0" prefHeight="25.0" prefWidth="118.0" promptText="Fecha de Nacimiento" unFocusColor="#393e46" AnchorPane.leftAnchor="505.0" AnchorPane.topAnchor="102.0" />
                         <JFXComboBox fx:id="cbSexoPaciente" focusColor="#00c5f0" layoutX="633.0" layoutY="102.0" prefHeight="25.0" prefWidth="79.0" promptText="Sexo" unFocusColor="#393e46" AnchorPane.leftAnchor="633.0" AnchorPane.topAnchor="102.0" />
                         <JFXComboBox fx:id="cbProvincia" focusColor="#00c5f0" layoutX="70.0" layoutY="159.0" prefHeight="25.0" prefWidth="135.0" promptText="Provincia" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="160.0" />
-                        <JFXTextField fx:id="txtCantonPaciente" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="215.0" layoutY="160.0" promptText="Cantón" unFocusColor="#393e46" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="160.0" />
+                        <JFXComboBox fx:id="cbCanton" focusColor="#00c5f0" layoutX="215.0" layoutY="160.0" prefHeight="25.0" prefWidth="134.0" promptText="Cantón" unFocusColor="#393e46" />
                         <JFXTextField fx:id="txtDireccionPaciente" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="360.0" layoutY="160.0" prefHeight="25.0" prefWidth="263.0" promptText="Dirección" unFocusColor="#393e46" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="160.0" />
                         <JFXComboBox fx:id="cbEstadoPaciente" focusColor="#00c5f0" layoutX="633.0" layoutY="160.0" prefHeight="25.0" prefWidth="79.0" promptText="Estado" unFocusColor="#393e46" AnchorPane.leftAnchor="633.0" AnchorPane.topAnchor="160.0" />
                         <JFXTextField fx:id="txtCelularPaciente" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="242.0" promptText="Teléfono Celular" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="218.0" />
@@ -108,9 +154,10 @@
                               </AnchorPane>
                               <JFXTextField fx:id="txtReferido" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="180.0" prefHeight="25.0" prefWidth="642.0" promptText="Paciente referido mediante..." unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="180.0" />
                               <JFXButton fx:id="btnRegistrar" buttonType="RAISED" layoutX="178.0" layoutY="221.0" prefHeight="25.0" prefWidth="150.0" ripplerFill="WHITESMOKE" style="-fx-background-color: #63d356;" text="Registrar" textFill="WHITE" AnchorPane.leftAnchor="178.0" AnchorPane.topAnchor="221.0" />
-                              <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutX="435.0" layoutY="221.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITE" AnchorPane.leftAnchor="435.0" AnchorPane.topAnchor="221.0" />
+                              <JFXButton fx:id="btnCancelarRegistrar" buttonType="RAISED" layoutX="435.0" layoutY="221.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITE" AnchorPane.leftAnchor="435.0" AnchorPane.topAnchor="221.0" />
                            </children>
                         </AnchorPane>
+                        <DatePicker fx:id="txtFechaPaciente" layoutX="512.0" layoutY="103.0" prefHeight="25.0" prefWidth="110.0" promptText="Fecha de Nac." />
                      </children>
                   </AnchorPane>
                </content>
@@ -227,7 +274,7 @@
                 <VBox alignment="CENTER" prefHeight="280.0" prefWidth="42.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="74.0">
                     <children>
                         <FontIcon fx:id="icoSucursal" boundsType="VISUAL" iconColor="WHITESMOKE" iconLiteral="fa-building" iconSize="30" textAlignment="CENTER" wrappingWidth="35.0" />
-                        <FontIcon fx:id="icoPaciente" boundsType="VISUAL" iconColor="#002b3c" iconLiteral="fa-user" iconSize="30" textAlignment="CENTER" wrappingWidth="35.0" />
+                        <FontIcon fx:id="icoPaciente" boundsType="VISUAL" iconColor="#002b3c" iconLiteral="fa-user" iconSize="30" text="" textAlignment="CENTER" wrappingWidth="35.0" />
                         <FontIcon fx:id="icoOdontologo" boundsType="VISUAL" iconColor="WHITESMOKE" iconLiteral="fa-user-md" iconSize="30" textAlignment="CENTER" wrappingWidth="35.0" />
                         <FontIcon fx:id="icoCita" boundsType="VISUAL" iconColor="WHITESMOKE" iconLiteral="fa-calendar-plus-o" iconSize="30" textAlignment="CENTER" wrappingWidth="35.0" />
                         <FontIcon fx:id="icoHistoriaClinica" boundsType="VISUAL" iconColor="WHITESMOKE" iconLiteral="fa-file-text" iconSize="30" textAlignment="CENTER" wrappingWidth="35.0" />
