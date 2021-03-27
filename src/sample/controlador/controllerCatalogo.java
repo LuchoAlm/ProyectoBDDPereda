@@ -548,6 +548,10 @@ public class controllerCatalogo implements Initializable {
             paneConsultarCatalogo.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
+            tablaDatos.setVisible(false);
+            tablaDatos.getItems().clear();
+            tablaDatos.getColumns().clear();
+            data.clear();
         });
 
         btnActualizarCatalogo.setOnMouseClicked(mouseEvent -> {
@@ -555,6 +559,10 @@ public class controllerCatalogo implements Initializable {
             paneActualizarCatalogo.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
+            tablaEditar.setVisible(false);
+            tablaEditar.getItems().clear();
+            tablaEditar.getColumns().clear();
+            data.clear();
         });
 
         btnEliminarCatologo.setOnMouseClicked(mouseEvent -> {
@@ -562,6 +570,10 @@ public class controllerCatalogo implements Initializable {
             paneEliminarCatalogo.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
+            tablaEliminar.setVisible(false);
+            tablaEliminar.getItems().clear();
+            tablaEliminar.getColumns().clear();
+            data.clear();
         });
 
         ////////////////////////////////////////////////////////////////////////
@@ -621,6 +633,7 @@ public class controllerCatalogo implements Initializable {
                                 rs.getString("descripcion_trat"),
                                 rs.getFloat("precio_trat")
                         ));
+                        tablaDatos.setVisible(true);
                         tablaDatos.setItems(data);
                     }
                 }else{
@@ -635,6 +648,7 @@ public class controllerCatalogo implements Initializable {
                                 rs.getString("descripcion_trat"),
                                 rs.getFloat("precio_trat")
                         ));
+                        tablaDatos.setVisible(true);
                         tablaDatos.setItems(data);
                     }
                 }
@@ -663,6 +677,7 @@ public class controllerCatalogo implements Initializable {
                                 rs.getString("descripcion_trat"),
                                 rs.getFloat("precio_trat")
                         ));
+                        tablaEditar.setVisible(true);
                         tablaEditar.setItems(data);
                     }
                 }else{
@@ -677,6 +692,7 @@ public class controllerCatalogo implements Initializable {
                                 rs.getString("descripcion_trat"),
                                 rs.getFloat("precio_trat")
                         ));
+                        tablaEditar.setVisible(true);
                         tablaEditar.setItems(data);
                     }
                 }
@@ -745,6 +761,7 @@ public class controllerCatalogo implements Initializable {
                             rs.getString("descripcion_trat"),
                             rs.getFloat("precio_trat")
                     ));
+                    tablaEliminar.setVisible(true);
                     tablaEliminar.setItems(data);
                 }
             } catch (SQLException ex) {
@@ -792,6 +809,9 @@ public class controllerCatalogo implements Initializable {
     }
 
     public void llenarColumnas(){
+        tablaDatos.getItems().clear();
+        tablaDatos.getColumns().clear();
+        data.clear();
         //AÑADIMOS LA INFORMACION A LAS COLUMNAS
         TableColumn<beanTratamiento, String> colIdSuc = new TableColumn<>("ID TRAT");
         colIdSuc.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("id_trat"));
@@ -824,6 +844,9 @@ public class controllerCatalogo implements Initializable {
     }
 
     public void llenarColumnasEditar(){
+        tablaEditar.getItems().clear();
+        tablaEditar.getColumns().clear();
+        data.clear();
         //AÑADIMOS LA INFORMACION A LAS COLUMNAS
         TableColumn<beanTratamiento, String> colIdSuc = new TableColumn<>("ID TRAT");
         colIdSuc.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("id_trat"));
@@ -860,6 +883,9 @@ public class controllerCatalogo implements Initializable {
     }
 
     public void llenarColumnasBorrar(){
+        tablaEliminar.getItems().clear();
+        tablaEliminar.getColumns().clear();
+        data.clear();
         //AÑADIMOS LA INFORMACION A LAS COLUMNAS
         TableColumn<beanTratamiento, String> colIdSuc = new TableColumn<>("ID TRAT");
         colIdSuc.setCellValueFactory(new PropertyValueFactory<beanTratamiento, String>("id_trat"));

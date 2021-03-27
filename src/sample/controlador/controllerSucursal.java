@@ -10,9 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
@@ -26,10 +24,7 @@ import sample.modelo.beanSucursal;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class controllerSucursal implements Initializable {
@@ -91,7 +86,7 @@ public class controllerSucursal implements Initializable {
     @FXML
     private JFXButton btnActualizarActualizar;
 
-    private String id_suc, nombre_suc, direccion_suc, tlf_suc;
+    private String old_id_suc="", id_suc, nombre_suc, direccion_suc, tlf_suc;
     @FXML
     private JFXTextField txtCodigoSucursalBuscar1;
 
@@ -108,6 +103,9 @@ public class controllerSucursal implements Initializable {
 
     @FXML
     private JFXButton btnBuscarEliminar, btnCancelarEliminar, btnEliminarEliminar;
+
+    @FXML
+    private JFXTextField txtIdBuscarEliminar;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -506,7 +504,10 @@ public class controllerSucursal implements Initializable {
             paneConsultarSucursal.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
-            //CARGAR LA TABLA DE CONSULTAR SUCURSAL
+            tablaDatos.setVisible(false);
+            tablaDatos.getItems().clear();
+            tablaDatos.getColumns().clear();
+            this.data.clear();
         });
 
         btnActualizarSucursal.setOnMouseClicked(mouseEvent -> {
@@ -514,7 +515,10 @@ public class controllerSucursal implements Initializable {
             paneActualizarSucursal.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
-            //CARGAR LA TABLA DE ACTUALIZAR SUCURSAL
+            tablaEditar.getItems().clear();
+            tablaEditar.getColumns().clear();
+            tablaEditar.setVisible(false);
+            this.data.removeAll();
         });
 
         btnEliminarSucursal.setOnMouseClicked(mouseEvent -> {
@@ -522,6 +526,10 @@ public class controllerSucursal implements Initializable {
             paneEliminarSucursal.setVisible(true);
             regresar.setVisible(false);
             regresarOpciones.setVisible(true);
+            tablaEliminar.setVisible(false);
+            tablaEliminar.getItems().clear();
+            tablaEliminar.getColumns().clear();
+            this.data.clear();
             //CARGAR TABLA PARA ELIMINAR SUCURSAL
         });
 
@@ -586,6 +594,7 @@ public class controllerSucursal implements Initializable {
                                 rs.getString("direccion_suc"),
                                 rs.getString("telefono_suc")
                         ));
+                        tablaDatos.setVisible(true);
                         tablaDatos.setItems(data);
                     }
                 }else{
@@ -600,13 +609,18 @@ public class controllerSucursal implements Initializable {
                                 rs.getString("direccion_suc"),
                                 rs.getString("telefono_suc")
                         ));
+                        tablaDatos.setVisible(true);
                         tablaDatos.setItems(data);
                     }
                 }
-
             } catch (SQLException ex) {
                 System.out.println(ex.toString());
             }
+        });
+
+        btnCancelarConsultar.setOnMouseClicked(mouseEvent -> {
+            tablaDatos.setVisible(false);
+            txtIdBuscar.requestFocus();
         });
 
 
@@ -614,6 +628,7 @@ public class controllerSucursal implements Initializable {
         ////            LOGICA PANEL ACTUALIZAR SUCURSAL                    ////
         ////////////////////////////////////////////////////////////////////////
         btnBuscarActualizar.setOnMouseClicked(mouseEvent -> {
+            this.data.clear();
            llenarColumnasEditar();
            tablaEditar.setEditable(true);
             try{
@@ -630,6 +645,7 @@ public class controllerSucursal implements Initializable {
                                 rs.getString("direccion_suc"),
                                 rs.getString("telefono_suc")
                         ));
+                        tablaEditar.setVisible(true);
                         tablaEditar.setItems(data);
                     }
                 }else{
@@ -644,6 +660,7 @@ public class controllerSucursal implements Initializable {
                                 rs.getString("direccion_suc"),
                                 rs.getString("telefono_suc")
                         ));
+                        tablaEditar.setVisible(true);
                         tablaEditar.setItems(data);
                     }
                 }
@@ -653,14 +670,13 @@ public class controllerSucursal implements Initializable {
             }
         });
 
+        btnCancelarActualizar.setOnMouseClicked(mouseEvent -> {
+            tablaEditar.setVisible(false);
+            txtCodigoSucursalBuscar1.requestFocus();
+        });
+
         tablaEditar.setOnMouseClicked(mouseEvent -> {
-            //OBTENGO LA EL INDICE DE LA TABLA
             index = tablaEditar.getSelectionModel().getFocusedIndex();
-            //OBTENGO EL CAMPO DEL INDICE ESPECIFICO
-            id_suc = tablaEditar.getItems().get(index).getId_suc();
-            nombre_suc =tablaEditar.getItems().get(index).getNombre_suc();
-            direccion_suc= tablaEditar.getItems().get(index).getDireccion_suc();
-            tlf_suc = tablaEditar.getItems().get(index).getTelefono_suc();
         });
 
         btnActualizarActualizar.setOnMouseClicked(mouseEvent -> {
@@ -668,51 +684,67 @@ public class controllerSucursal implements Initializable {
                 Connection con = Conexion.getConexion();
                 PreparedStatement ps = con.prepareStatement("UPDATE SUCURSAL SET id_suc=?, nombre_suc=?, " +
                         "direccion_suc=?, telefono_suc=? WHERE id_suc =?");
-                ps.setString(1, id_suc);
-                ps.setString(2, nombre_suc);
-                ps.setString(3, direccion_suc);
-                ps.setString(4, tlf_suc);
-                ps.setString(5, id_suc);
+                ps.setString(1, data.get(index).getId_suc());
+                ps.setString(2, data.get(index).getNombre_suc());
+                ps.setString(3, data.get(index).getDireccion_suc());
+                ps.setString(4, data.get(index).getTelefono_suc());
+                if(old_id_suc.equals("")){
+                    System.out.println("1.- Entramos");
+                    ps.setString(5, data.get(index).getId_suc());
+                }else{
+                    System.out.println("2.- Entramos");
+                    ps.setString(5, old_id_suc);
+                }
                 ps.executeUpdate();
+                txtCodigoSucursalBuscar1.requestFocus();
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
                 a.setHeaderText("Los datos se actualizaron correctamente");
-                data.get(index).setId_suc(id_suc);
-                data.get(index).setNombre_suc(nombre_suc);
-                data.get(index).setDireccion_suc(direccion_suc);
-                data.get(index).setTelefono_suc(tlf_suc);
-                tablaEditar.refresh();
-
                 a.showAndWait();
-                //Ocultamos el panel
-                //paneRegistroSucursal.setVisible(false);
-                //paneOpciones.setVisible(true);
-                //regresarOpciones.setVisible(false);
-                //regresar.setVisible(true);
+                tablaEditar.refresh();
+                old_id_suc="";
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         });
+
         ////////////////////////////////////////////////////////////////////////
         ////            LOGICA PANEL ELIMINAR SUCURSAL                      ////
         ////////////////////////////////////////////////////////////////////////
         btnBuscarEliminar.setOnMouseClicked(mouseEvent -> {
+            tablaEliminar.setVisible(true);
+            this.data.clear();
             llenarColumnasBorrar();
             try{
                 PreparedStatement ps;
                 ResultSet rs;
-
-                Connection con = Conexion.getConexion();
-                ps = con.prepareStatement("SELECT * FROM SUCURSAL");
-                rs = ps.executeQuery();
-                while (rs.next()){
-                    data.add(new beanSucursal (
-                            rs.getString("id_suc"),
-                            rs.getString("nombre_suc"),
-                            rs.getString("direccion_suc"),
-                            rs.getString("telefono_suc")
-                    ));
-                    tablaEliminar.setItems(data);
+                if(txtIdBuscarEliminar.getText().equals("")){
+                    Connection con = Conexion.getConexion();
+                    ps = con.prepareStatement("SELECT * FROM SUCURSAL");
+                    rs = ps.executeQuery();
+                    while (rs.next()){
+                        data.add(new beanSucursal (
+                                rs.getString("id_suc"),
+                                rs.getString("nombre_suc"),
+                                rs.getString("direccion_suc"),
+                                rs.getString("telefono_suc")
+                        ));
+                        tablaEliminar.setItems(data);
+                    }
+                }else{
+                    String where = " WHERE id_suc=?";
+                    Connection con = Conexion.getConexion();
+                    ps = con.prepareStatement("SELECT * FROM SUCURSAL"+where);
+                    ps.setString(1, txtIdBuscarEliminar.getText());
+                    rs = ps.executeQuery();
+                    while (rs.next()){
+                        data.add(new beanSucursal (
+                                rs.getString("id_suc"),
+                                rs.getString("nombre_suc"),
+                                rs.getString("direccion_suc"),
+                                rs.getString("telefono_suc")
+                        ));
+                        tablaEliminar.setItems(data);
+                    }
                 }
             } catch (SQLException ex) {
                 System.out.println(ex.toString());
@@ -720,9 +752,7 @@ public class controllerSucursal implements Initializable {
         });
 
         tablaEliminar.setOnMouseClicked(mouseEvent -> {
-            //OBTENGO LA EL INDICE DE LA TABLA
             index = tablaEliminar.getSelectionModel().getFocusedIndex();
-            //OBTENGO EL CAMPO DEL INDICE ESPECIFICO
             id_suc = tablaEliminar.getItems().get(index).getId_suc();
         });
 
@@ -730,11 +760,10 @@ public class controllerSucursal implements Initializable {
             try {
                 Connection con = Conexion.getConexion();
                 PreparedStatement ps = con.prepareStatement("DELETE FROM SUCURSAL WHERE id_suc =?");
-                ps.setString(1, id_suc);
+                ps.setString(1, data.get(index).getId_suc());
                 ps.executeUpdate();
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
-                a.setHeaderText("Los datos se borraron correctamente");
-                //a.setContentText("El paciente: NOMBRE_APELLIDO se registró en la base de datos");
+                a.setHeaderText("La sucursar: "+data.get(index).getNombre_suc()+", se elimino correctamente");
                 data.remove(index);
                 tablaEliminar.refresh();
                 a.showAndWait();
@@ -790,6 +819,10 @@ public class controllerSucursal implements Initializable {
 
 
     public void llenarColumnas(){
+        //BORRAMOS LA INFORMACION DE LAS TABLAS
+        tablaDatos.getItems().clear();
+        tablaDatos.getColumns().clear();
+        data.removeAll();
         //AÑADIMOS LA INFORMACION A LAS COLUMNAS
         TableColumn<beanSucursal, String> colIdSuc = new TableColumn<>("ID Suc");
         colIdSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("id_suc"));
@@ -823,13 +856,18 @@ public class controllerSucursal implements Initializable {
     }
 
     public void llenarColumnasEditar(){
+        //ELIMINAMOS LA INFORMACION DE LA TABLA
+        tablaEditar.getItems().clear();
+        tablaEditar.getColumns().clear();
+        this.data.removeAll();
         //AÑADIMOS LA INFORMACION A LAS COLUMNAS
         TableColumn<beanSucursal, String> colIdSuc = new TableColumn<>("ID Suc");
         colIdSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("id_suc"));
         colIdSuc.setCellFactory(TextFieldTableCell.forTableColumn());
         colIdSuc.setOnEditCommit(data -> {
             btnActualizarActualizar.setVisible(true);
-            id_suc=data.getNewValue();
+            this.old_id_suc = data.getOldValue();
+            this.data.get(index).setId_suc(data.getNewValue());
         });
 
         TableColumn<beanSucursal, String> colNombre = new TableColumn<>("Nombre Sucursal");
@@ -837,7 +875,7 @@ public class controllerSucursal implements Initializable {
         colNombre.setCellFactory(TextFieldTableCell.forTableColumn());
         colNombre.setOnEditCommit(data -> {
             btnActualizarActualizar.setVisible(true);
-            nombre_suc=data.getNewValue();
+            this.data.get(index).setNombre_suc(data.getNewValue());
         });
 
         TableColumn<beanSucursal, String> colDirSuc = new TableColumn<>("ID Suc");
@@ -845,7 +883,7 @@ public class controllerSucursal implements Initializable {
         colDirSuc.setCellFactory(TextFieldTableCell.forTableColumn());
         colDirSuc.setOnEditCommit(data -> {
             btnActualizarActualizar.setVisible(true);
-            direccion_suc=data.getNewValue();
+            this.data.get(index).setDireccion_suc(data.getNewValue());
         });
 
         TableColumn<beanSucursal, String> colTlfSuc = new TableColumn<>("Tlf Suc");
@@ -853,13 +891,16 @@ public class controllerSucursal implements Initializable {
         colTlfSuc.setCellFactory(TextFieldTableCell.forTableColumn());
         colTlfSuc.setOnEditCommit(data -> {
             btnActualizarActualizar.setVisible(true);
-            tlf_suc=data.getNewValue();
+            this.data.get(index).setTelefono_suc(data.getNewValue());
         });
-
         tablaEditar.getColumns().addAll(colIdSuc, colNombre, colDirSuc, colTlfSuc);
     }
 
     public void llenarColumnasBorrar(){
+        //LIMPIAMOS LA TABLA
+        tablaEliminar.getItems().clear();
+        tablaEliminar.getColumns().clear();
+        this.data.clear();
         //AÑADIMOS LA INFORMACION A LAS COLUMNAS
         TableColumn<beanSucursal, String> colIdSuc = new TableColumn<>("ID Suc");
         colIdSuc.setCellValueFactory(new PropertyValueFactory<beanSucursal, String>("id_suc"));

@@ -3,11 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -32,12 +32,17 @@
                         <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-user" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
-                              <JFXTextField fx:id="txtCodigoSucursalBuscar11" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Cédula de Paciente" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarSucursal11" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarCancelar11" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                              <JFXTextField fx:id="txtCiEliminar" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Cédula de Paciente" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarEliminar" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnCancelarEliminar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" AnchorPane.topAnchor="25.0" />
+                              <JFXButton fx:id="btnEliminarEliminar" buttonType="RAISED" contentDisplay="CENTER" layoutX="689.0" layoutY="25.0" prefHeight="25.0" prefWidth="42.0" style="-fx-background-color: #F24949;" text=" " textAlignment="CENTER" textFill="WHITESMOKE" AnchorPane.topAnchor="25.0">
+                                 <graphic>
+                                    <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-times-circle" iconSize="20" />
+                                 </graphic>
+                              </JFXButton>
                            </children>
                         </AnchorPane>
-                        <JFXTreeTableView fx:id="tablaDatos11" layoutX="137.0" layoutY="84.0" prefHeight="296.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                        <TableView fx:id="tablaEliminar" layoutX="265.0" layoutY="128.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -58,12 +63,13 @@
                         <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-user" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
-                              <JFXTextField fx:id="txtCodigoSucursalBuscar1" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Cédula de Paciente" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarSucursal1" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarCancelar1" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                              <JFXTextField fx:id="txtCiPacienteActualizar" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Cédula de Paciente" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarActualizar" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnCancelarActualizar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnActualizarActualizar" buttonType="RAISED" layoutX="613.0" layoutY="23.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #BADAFA;" text="Actualizar" textFill="#393746" visible="false" />
                            </children>
                         </AnchorPane>
-                        <JFXTreeTableView fx:id="tablaDatos1" layoutX="137.0" layoutY="84.0" prefHeight="296.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                        <TableView fx:id="tablaEditar" layoutX="252.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -84,12 +90,12 @@
                         <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-user" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
-                              <JFXTextField fx:id="txtCodigoSucursalBuscar" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Cédula de Paciente" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarSucursal" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
+                              <JFXTextField fx:id="txtIdBuscar" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Cédula de Paciente" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarPaciente" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
                               <JFXButton fx:id="btnBuscarCancelar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
                            </children>
                         </AnchorPane>
-                        <JFXTreeTableView fx:id="tablaDatos" layoutX="137.0" layoutY="84.0" prefHeight="296.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                        <TableView fx:id="tablaDatos" layoutX="118.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
                      </children>
                   </AnchorPane>
                </content>

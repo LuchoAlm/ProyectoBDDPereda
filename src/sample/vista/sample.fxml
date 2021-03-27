@@ -22,9 +22,9 @@
                   <Image url="@../../img/diente.png" />
                </image>
             </ImageView>
-            <Label layoutX="27.0" layoutY="193.0" prefHeight="81.0" prefWidth="232.0" text="Pereda Dental" textFill="#393e46">
+            <Label alignment="CENTER" layoutX="27.0" layoutY="193.0" prefHeight="81.0" prefWidth="232.0" text="Pereda Dental" textFill="#393e46">
                <font>
-                  <Font name="BillionDreams" size="48.0" />
+                  <Font size="30.0" />
                </font>
             </Label>
             <JFXTextField fx:id="txtUsuario" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="345.0" layoutY="135.0" pickOnBounds="false" prefHeight="30.0" prefWidth="193.0" promptText="Ingrese su nombre de usuario" unFocusColor="#002b3c">

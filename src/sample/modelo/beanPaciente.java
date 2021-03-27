@@ -8,7 +8,6 @@ public class beanPaciente {
                         String fechaNacimiento_pac,
                         String direccion_pac,
                         String canton_pac,
-                        String provincia_pac,
                         String telefonoFijo_pac,
                         String celular_pac,
                         String correoElectronico_pac,
@@ -27,7 +26,6 @@ public class beanPaciente {
         this.fechaNacimiento_pac = fechaNacimiento_pac;
         this.direccion_pac = direccion_pac;
         this.canton_pac = canton_pac;
-        this.provincia_pac = provincia_pac;
         this.telefonoFijo_pac = telefonoFijo_pac;
         this.celular_pac = celular_pac;
         this.correoElectronico_pac = correoElectronico_pac;
@@ -48,7 +46,6 @@ public class beanPaciente {
     private String fechaNacimiento_pac;
     private String direccion_pac;
     private String canton_pac;
-    private String provincia_pac;
     private String telefonoFijo_pac;
     private String celular_pac;
     private String correoElectronico_pac;
@@ -115,14 +112,6 @@ public class beanPaciente {
 
     public void setCanton_pac(String canton_pac) {
         this.canton_pac = canton_pac;
-    }
-
-    public String getProvincia_pac() {
-        return provincia_pac;
-    }
-
-    public void setProvincia_pac(String provincia_pac) {
-        this.provincia_pac = provincia_pac;
     }
 
     public String getTelefonoFijo_pac() {

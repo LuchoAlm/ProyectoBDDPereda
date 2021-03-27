@@ -30,7 +30,7 @@
                         <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-building" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
-                              <JFXTextField fx:id="txtCodigoSucursalBuscar2" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Código de la Sucursal" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXTextField fx:id="txtIdBuscarEliminar" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Código de la Sucursal" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
                               <JFXButton fx:id="btnBuscarEliminar" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
                               <JFXButton fx:id="btnCancelarEliminar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
                               <JFXButton fx:id="btnEliminarEliminar" buttonType="RAISED" contentDisplay="CENTER" layoutX="698.0" layoutY="23.0" prefHeight="25.0" prefWidth="42.0" style="-fx-background-color: #F24949;" text=" " textAlignment="CENTER" textFill="WHITESMOKE">

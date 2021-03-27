@@ -3,10 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -19,7 +20,7 @@
     <children>
       <AnchorPane fx:id="paneEliminarCita" layoutX="30.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
          <children>
-            <Label text="Eliminar Información del Odontólogo" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+            <Label text="Eliminar Información de la Cita" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <FontIcon iconLiteral="fa-calendar-plus-o" />
                </graphic>
@@ -31,38 +32,17 @@
                         <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-calendar-plus-o" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
-                              <JFXTextField fx:id="txtCodigoSucursalBuscar11" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Id de la Cita" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarSucursal11" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarCancelar11" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                              <JFXTextField fx:id="txtIdCitaEliminar" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Id de la Cita" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarEliminar" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnCancelarEliminar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnEliminarEliminar" buttonType="RAISED" contentDisplay="CENTER" prefHeight="25.0" prefWidth="42.0" style="-fx-background-color: #F24949;" text=" " textAlignment="CENTER" textFill="WHITESMOKE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="24.0">
+                                 <graphic>
+                                    <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-times-circle" iconSize="20" />
+                                 </graphic>
+                              </JFXButton>
                            </children>
                         </AnchorPane>
-                        <JFXTreeTableView fx:id="tablaDatos11" layoutX="137.0" layoutY="84.0" prefHeight="296.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </ScrollPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="paneActualizarCita" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
-         <children>
-            <Label text="Actualizar Información de Agenda" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
-               <graphic>
-                  <FontIcon iconLiteral="fa-calendar-plus-o" />
-               </graphic>
-            </Label>
-            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="96.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-               <content>
-                  <AnchorPane prefHeight="389.0" prefWidth="754.0" style="-fx-background-color: #BADAFA;">
-                     <children>
-                        <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-user-md" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
-                              <JFXTextField fx:id="txtCodigoSucursalBuscar1" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="id de Cita" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarSucursal1" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarCancelar1" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
-                           </children>
-                        </AnchorPane>
-                        <JFXTreeTableView fx:id="tablaDatos1" layoutX="137.0" layoutY="84.0" prefHeight="296.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                        <TableView fx:id="tablaEliminar" layoutX="289.0" layoutY="146.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -83,12 +63,12 @@
                         <AnchorPane layoutX="130.0" layoutY="50.0" prefHeight="70.0" prefWidth="754.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-calendar-plus-o" iconSize="30" layoutX="70.0" layoutY="45.714284896850586" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="20.0" />
-                              <JFXTextField fx:id="txtCodigoSucursalBuscar" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Id De la Agenda" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarSucursal" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
-                              <JFXButton fx:id="btnBuscarCancelar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
+                              <JFXTextField fx:id="txtIdCitaBuscar" focusColor="#00c5f0" labelFloat="true" layoutX="113.0" layoutY="23.0" promptText="Id De la Cita" style="-fx-text-inner-color: #f5f5f5; -fx-prompt-text-fill: #f5f5f5;" unFocusColor="WHITESMOKE" />
+                              <JFXButton fx:id="btnBuscarCita" buttonType="RAISED" layoutX="268.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #63D356;" text="Buscar" textFill="WHITESMOKE" />
+                              <JFXButton fx:id="btnCancelarBuscar" buttonType="RAISED" layoutX="408.0" layoutY="24.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITESMOKE" />
                            </children>
                         </AnchorPane>
-                        <JFXTreeTableView fx:id="tablaDatos" layoutX="137.0" layoutY="84.0" prefHeight="296.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                        <TableView fx:id="tablaDatos" layoutX="202.0" layoutY="126.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -97,7 +77,7 @@
       </AnchorPane>
       <AnchorPane fx:id="paneRegistrarAgenda" focusTraversable="true" layoutX="313.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" scaleShape="false" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
          <children>
-            <Label layoutX="44.0" layoutY="26.0" text="Registro de Peciente" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+            <Label layoutX="44.0" layoutY="26.0" text="Registro de Cita" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <FontIcon iconLiteral="fa-calendar-plus-o" />
                </graphic>
@@ -108,22 +88,23 @@
                      <children>
                         <AnchorPane layoutX="178.0" layoutY="-14.0" prefHeight="40.0" prefWidth="756.0" style="-fx-background-color: #002b3c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="67.0" layoutY="12.0" text="Información De la Agenda" textFill="WHITE" AnchorPane.leftAnchor="70.0">
+                              <Label layoutX="67.0" layoutY="12.0" text="Información De la Cita" textFill="WHITE" AnchorPane.leftAnchor="70.0">
                                  <graphic>
                                     <FontIcon iconColor="WHITE" iconLiteral="fa-calendar-plus-o" />
                                  </graphic>
                               </Label>
                            </children>
                         </AnchorPane>
-                        <JFXComboBox fx:id="cbSede" focusColor="#00c5f0" layoutX="70.0" layoutY="58.0" prefHeight="25.0" prefWidth="79.0" promptText="Sede" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="58.0" />
-                        <JFXTextField fx:id="txtCedula" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="112.0" prefHeight="25.0" prefWidth="160.0" promptText="Cédula del Odontólogo" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="112.0" />
-                        <JFXTextField fx:id="txtNombresOdontologo" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="240.0" layoutY="112.0" prefHeight="25.0" prefWidth="190.0" promptText="Nombres del Odontólogo" unFocusColor="#393e46" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="112.0" />
-                        <JFXTextField fx:id="txtApellidosOdontologo" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="440.0" layoutY="112.0" prefHeight="25.0" prefWidth="190.0" promptText="Apellidos del Odontólogo" unFocusColor="#393e46" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="112.0" />
-                        <JFXTextField fx:id="txtEspecialidadOdontologo" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="172.0" prefHeight="25.0" prefWidth="160.0" promptText="Especialidad" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="172.0" />
-                        <JFXTextField fx:id="txtTelefonoOdontologo" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="240.0" layoutY="172.0" prefWidth="192.0" promptText="Teléfono Fíjo" unFocusColor="#393e46" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="172.0" />
-                        <JFXTextField fx:id="txtCelularOdontologo" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="440.0" layoutY="172.0" prefHeight="25.0" prefWidth="190.0" promptText="Teléfono Celular" unFocusColor="#393e46" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="172.0" />
-                        <JFXButton fx:id="btnRegistrar" buttonType="RAISED" layoutX="202.0" layoutY="250.0" prefHeight="25.0" prefWidth="150.0" ripplerFill="WHITESMOKE" style="-fx-background-color: #63d356;" text="Registrar" textFill="WHITE" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="250.0" />
-                        <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutX="402.0" layoutY="250.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITE" AnchorPane.leftAnchor="402.0" AnchorPane.topAnchor="250.0" />
+                        <JFXTextField fx:id="txtIdCita" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="69.0" layoutY="72.0" prefHeight="22.0" prefWidth="140.0" promptText="Id Cita" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="72.0" />
+                        <DatePicker fx:id="txtFechaCita" layoutX="53.0" layoutY="128.0" prefHeight="23.0" prefWidth="148.0" promptText="Fecha de Nac." AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="128.0" />
+                        <JFXTextField fx:id="txtHoraCita" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="229.0" layoutY="128.0" prefHeight="25.0" prefWidth="160.0" promptText="Hora Cita" unFocusColor="#393e46" AnchorPane.leftAnchor="229.0" AnchorPane.topAnchor="128.0" />
+                        <JFXComboBox fx:id="cbSede" focusColor="#00c5f0" layoutX="402.0" layoutY="128.0" prefHeight="25.0" prefWidth="79.0" promptText="Sede" unFocusColor="#393e46" AnchorPane.leftAnchor="402.0" AnchorPane.topAnchor="128.0" />
+                        <JFXComboBox fx:id="cbPaciente" focusColor="#00c5f0" layoutX="70.0" layoutY="182.0" prefHeight="25.0" prefWidth="148.0" promptText="Paciente" unFocusColor="#393e46" />
+                        <JFXComboBox fx:id="cbOdontologo" focusColor="#00c5f0" layoutX="235.0" layoutY="182.0" prefHeight="25.0" prefWidth="148.0" promptText="Odontólogo" unFocusColor="#393e46" />
+                        <JFXComboBox fx:id="cbTratamiento" focusColor="#00c5f0" layoutX="403.0" layoutY="182.0" prefHeight="25.0" prefWidth="148.0" promptText="Tratamiento" unFocusColor="#393e46" />
+                        <JFXTextField fx:id="txtHclinica" alignment="BASELINE_LEFT" focusColor="#00c5f0" labelFloat="true" layoutX="70.0" layoutY="236.0" prefHeight="25.0" prefWidth="484.0" promptText="Hist. Clínica" unFocusColor="#393e46" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="236.0" />
+                        <JFXButton fx:id="btnRegistrar" buttonType="RAISED" layoutX="202.0" layoutY="300.0" prefHeight="25.0" prefWidth="150.0" ripplerFill="WHITESMOKE" style="-fx-background-color: #63d356;" text="Registrar" textFill="WHITE" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="300.0" />
+                        <JFXButton fx:id="btnCancelarRegistrar" buttonType="RAISED" layoutX="402.0" layoutY="300.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #F24949;" text="Cancelar" textFill="WHITE" AnchorPane.leftAnchor="402.0" AnchorPane.topAnchor="300.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -156,14 +137,6 @@
                      </font>
                      <graphic>
                         <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-calendar" iconSize="40" />
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="btnActualizarCita" accessibleHelp="Aquí podrá registrar un paciente" accessibleText="Aquí podrá registrar un paciente" alignment="CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="235.0" ripplerFill="#00c5f0" style="-fx-background-color: #002b3c;" text="Actualizar Agenda" textFill="WHITESMOKE" wrapText="true" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                     <graphic>
-                        <FontIcon iconColor="WHITESMOKE" iconLiteral="fa-calendar-o" iconSize="40" />
                      </graphic>
                   </JFXButton>
                   <JFXButton fx:id="btnEliminarCita" accessibleHelp="Aquí podrá registrar un paciente" accessibleText="Aquí podrá registrar un paciente" alignment="CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="235.0" ripplerFill="#00c5f0" style="-fx-background-color: #002b3c;" text="Eliminar Cita" textFill="WHITESMOKE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
